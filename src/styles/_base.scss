@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+
+:root {
+  --primary: #4f515a;
+  --secondary: #ebebeb;
+  --warning: #da0f41;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  color: var(--primary);
+  box-sizing: border-box;
+}
+body {
+  background: #fafafa;
+}
+a {
+  text-decoration: none;
+}
+
+/* buttons */
+button, .btn { 
+  background: var(--secondary);
+  border-radius: 0.5rem;
+  border: 0;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}
+button:hover, .btn:hover {
+  background: var(--primary);
+  color: white;
+}
+button:disabled {
+  opacity: 0.5;
+  color: var(--primary);
+  background: var(--secondary);
+  cursor: not-allowed;
+}
+
+/* forms */
+form {
+  max-width: 25rem;
+  margin: 0 auto;
+  padding: 1.875rem;
+  border-radius: 0.5rem;
+  box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
+  border: 1px solid  var(--secondary);
+  background: white;
+  text-align: left;
+
+}
+input, textarea {
+  border: 0;
+  border-bottom: 1px solid var(--secondary);
+  padding: 0.625rem;
+  outline: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1.25rem auto;
+
+}
+input[type="file"] {
+  border: 0;
+  padding: 0;
+}
+label {
+  font-size:0.75rem;
+  margin-top: 1.875rem;
+}
+/* error text */
+.error {
+  color: var(--warning);
+  font-size: .875rem;
+  margin: 1rem 0;
+}
+.container {
+  max-width: 75rem;
+  padding: 0 6.25rem;
+  margin: 0 auto;
+}

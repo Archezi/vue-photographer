@@ -1,12 +1,16 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <the-header></the-header>
+  <div class="content">
+    <div class="container">
+      <router-view />
+    </div>
   </div>
-  <router-view/>
 </template>
-
+<script>
+export default {}
+</script>
 <style lang="scss">
+@import '@/styles/_shared.scss';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +18,9 @@
   text-align: center;
   color: #2c3e50;
 }
-
+.content {
+  padding-top: 80px;
+}
 #nav {
   padding: 30px;
 

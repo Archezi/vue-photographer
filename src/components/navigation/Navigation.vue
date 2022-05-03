@@ -1,0 +1,86 @@
+<template>
+  <div class="navbar">
+    <nav class="navigation">
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <router-link :to="{ name: 'Home' }">Home</router-link>
+        </li>
+        <li class="navigation-item">
+          <router-link to="/Commercial">Commercial</router-link>
+        </li>
+        <li class="navigation-item">
+          <router-link :to="{ name: 'Weddings' }">Weddings</router-link>
+        </li>
+        <li class="navigation-item">
+          <router-link :to="{ name: 'Products' }">Products</router-link>
+        </li>
+        <li v-if="!user" class="navigation-item">
+          <router-link :to="{ name: 'Login' }">Login</router-link>
+        </li>
+      </ul>
+    </nav>
+    <div v-if="user" class="user">
+      <div class="user-name">Hi Lukasz</div>
+      <button @click="handleClick">Log Out</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import useLogout from '@/composables/useLogout'
+import getUser from '@/composables/getUser'
+export default {
+  setup() {
+    const { logout, isPending } = useLogout()
+    const { user } = getUser()
+
+    const handleClick = async () => {
+      await logout()
+      console.log('user logged out')
+    }
+
+    return { logout, isPending, handleClick, user }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.navbar {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  .user-name {
+    border-left: 1px solid #ccc;
+    padding-inline: 0.5rem;
+    color: #fff;
+  }
+}
+.navigation {
+  &-list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    li {
+      a {
+        transition: 0.2s color ease-in-out;
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          color: #9199a1;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+</style>
