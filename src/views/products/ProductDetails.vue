@@ -1,5 +1,5 @@
 <template>
-  <div class="cover">
+  <div class="cover" v-if="user">
     <img :src="product.imageUrl" alt="" />
     <div class="admin">
       <div>
@@ -11,7 +11,12 @@
     </div>
   </div>
   <div class="photo-library">
-    <product-details-list :prodArray="product.photos"> </product-details-list>
+    <div class="single-image" v-for="prod in product.photos" :key="prod.id">
+      <img loading="lazy" :src="prod.url" alt="" />
+      <div v-if="user" @click="handleDeleteImage(prod.id)" class="delete-image">
+        X
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,13 +26,14 @@ import getDocument from '@/composables/getDocument'
 import useStorage from '@/composables/useStorage'
 import { useRouter } from 'vue-router'
 import AddImage from '../../components/collections/AddImage.vue'
-import ProductDetailsList from '../../components/collections/product/ProductDetailsList.vue'
+import getUser from '@/composables/getUser'
 export default {
-  components: { AddImage, ProductDetailsList },
+  components: { AddImage },
   props: ['id'],
   setup(props) {
+    const { user } = getUser()
     const { error, document: product } = getDocument('products', props.id)
-    const { deleteDocument } = useDocuemnt('products', props.id)
+    const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
 
@@ -43,7 +49,15 @@ export default {
       router.push('/products')
     }
 
-    return { error, product, handleDelete }
+    // Delete single image
+    const handleDeleteImage = async (id) => {
+      const photos = product.value.photos.filter((photo) => photo.id !== id)
+      const photo = product.value.photos.find((ph) => ph.id === id)
+      await deleteImage(photo.filePath)
+      await updateDoc({ photos })
+    }
+
+    return { error, product, handleDelete, handleDeleteImage, user }
   }
 }
 </script>
@@ -77,5 +91,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: 1rem;
+}
+.single-image {
+  overflow: hidden;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: scale-down;
+    overflow: hidden;
+  }
 }
 </style>
