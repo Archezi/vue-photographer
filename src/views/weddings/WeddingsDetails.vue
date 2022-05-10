@@ -9,7 +9,7 @@
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import CollectionWedding from '../../components/collections/CollectionWedding.vue'
+import CollectionWedding from '../../components/collections/CreateCollectionWedding.vue'
 
 export default {
   components: { CollectionWedding },
@@ -27,7 +27,5 @@ export default {
   margin-bottom: 1rem;
   justify-content: flex-end;
   align-items: center;
-  button {
-  }
 }
 </style>

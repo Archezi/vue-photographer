@@ -21,8 +21,37 @@ const useStorage = (store) => {
       error.value = err
     }
   }
+  const uploadImageSubcoleciton = async (file, collection) => {
+    filePath.value = `${store}/${user.value.uid}/${collection}/subcolection/${file.name}`
+    const storageRef = projectStorage.ref(filePath.value)
 
-  return { uploadImage, url, filePath, error }
+    try {
+      const res = await storageRef.put(file)
+      url.value = await res.ref.getDownloadURL()
+    } catch (err) {
+      console.log(err.message)
+      error.value = err
+    }
+  }
+
+  const deleteImage = async (filePath) => {
+    const storageRef = projectStorage.ref(filePath)
+    try {
+      await storageRef.delete()
+    } catch (err) {
+      console.log(err.message)
+      error.value = err
+    }
+  }
+
+  return {
+    uploadImage,
+    deleteImage,
+    uploadImageSubcoleciton,
+    url,
+    filePath,
+    error
+  }
 }
 
 export default useStorage
