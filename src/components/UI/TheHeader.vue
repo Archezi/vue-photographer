@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header-container">
+    <div class="container header-container">
       <Logo class="logo" />
 
       <navigation class="navigation"></navigation>
@@ -29,9 +29,8 @@ Navigation
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1.875rem;
+    padding: 2rem 3.125rem;
     width: 100%;
-    max-width: 1100px;
     margin-inline: auto;
   }
   .logo {

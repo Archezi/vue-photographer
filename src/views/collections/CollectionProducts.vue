@@ -7,8 +7,12 @@
         <button v-else @click="addNew = !addNew">Close</button>
       </div>
     </div>
-    <create-collection-product v-if="addNew"></create-collection-product>
+    <transition>
+      <create-collection-product v-if="addNew"></create-collection-product>
+    </transition>
   </div>
+  <!-- Collection list  -->
+
   <div class="content">
     <products-list :products="products"></products-list>
   </div>
@@ -56,7 +60,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 400px;
-
+  transition: all 0.5s ease-out;
   gap: 1rem;
   .product-collection {
     max-height: 100%;
