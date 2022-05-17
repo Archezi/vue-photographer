@@ -10,19 +10,9 @@
     <create-collection-wedding v-if="addNew"></create-collection-wedding>
   </div>
   <div class="content">
-    <div
-      class="wedding-collection"
-      v-for="wedding in weddings"
-      :key="wedding.uid"
-    >
-      <div class="image">
-        <img :src="wedding.imageUrl" />
-      </div>
-      <div class="info">
-        <h4>{{ wedding.name }}</h4>
-        <p>{{ wedding.photos.length }} photos</p>
-      </div>
-    </div>
+    <form-add-file>
+      <template #collectionName> Collection Wedding </template>
+    </form-add-file>
   </div>
 </template>
 
@@ -31,8 +21,9 @@ import { ref } from 'vue'
 import getUser from '@/composables/getUser'
 import CreateCollectionWedding from '../../components/collections/CreateCollectionWedding.vue'
 import getCollection from '@/composables/getCollection'
+import FormAddFile from '../../components/UI/FormAddFile.vue'
 export default {
-  components: { CreateCollectionWedding },
+  components: { CreateCollectionWedding, FormAddFile },
   setup() {
     const { error, documents: weddings } = getCollection('wedding')
     let addNew = ref(false)

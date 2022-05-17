@@ -1,8 +1,10 @@
 <template>
   <header class="header">
-    <Logo class="logo" />
-    <div class="name">Lukasz Kaczmarek</div>
-    <navigation class="navigation"></navigation>
+    <div class="header-container">
+      <Logo class="logo" />
+
+      <navigation class="navigation"></navigation>
+    </div>
   </header>
 </template>
 
@@ -23,13 +25,15 @@ Navigation
 
 <style lang="scss" scoped>
 .header {
-  padding-inline: 30px;
-  height: 80px;
-  background: #2c3e50;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.875rem;
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
   .logo {
     margin-right: auto;
   }

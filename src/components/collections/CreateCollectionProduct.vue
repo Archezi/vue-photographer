@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="add-file-wrapper">
+    <div class="image-preview">
+      <img id="image-preview" />
+    </div>
     <form @submit.prevent="handleSubmit">
       <h4>Add new Products collection</h4>
       <input type="text" placeholder="Title" v-model="collectionName" />
@@ -7,6 +10,7 @@
       <label for="">Choose image for the collection</label>
       <input type="file" @change="handleChange" />
       <div class="error" v-if="fileError">{{ fileError }}</div>
+
       <button>Create</button>
     </form>
   </div>
@@ -54,6 +58,13 @@ export default {
     const handleChange = (e) => {
       let selected = e.target.files[0]
       console.log(selected)
+
+      //image preview
+      let output = document.getElementById('image-preview')
+      output.src = URL.createObjectURL(e.target.files[0])
+      output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+      }
       if (selected && types.includes(selected.type)) {
         file.value = selected
         fileError.value = null
@@ -74,6 +85,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.add-file-wrapper {
+  margin-inline: auto;
+  max-height: 500px;
+
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.image-preview {
+  height: 100%;
+  width: 100%;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
 button {
   margin-top: 1.25rem;
 }

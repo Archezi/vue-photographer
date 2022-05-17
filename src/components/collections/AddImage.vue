@@ -15,6 +15,7 @@ export default {
   setup(props) {
     const file = ref(null)
     const title = ref('')
+    const selectedImage = ref(null)
     const fileError = ref(null)
     const { updateDoc } = useDocument('products', props.product.id)
     const { filePath, url, uploadImage } = useStorage(props.product.folderName)
@@ -23,6 +24,7 @@ export default {
     const handleChange = (e) => {
       let selected = e.target.files[0]
       console.log(selected)
+
       if (selected && types.includes(selected.type)) {
         file.value = selected
         fileError.value = null
@@ -48,7 +50,7 @@ export default {
       return res
     }
 
-    return { handleChange, handleSubmit, fileError, title, file }
+    return { handleChange, handleSubmit, fileError, title, file, selectedImage }
   }
 }
 </script>

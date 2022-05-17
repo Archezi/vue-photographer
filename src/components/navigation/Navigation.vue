@@ -50,6 +50,8 @@ export default {
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
 }
 .user {
   display: flex;
@@ -59,7 +61,7 @@ export default {
   .user-name {
     border-left: 1px solid #ccc;
     padding-inline: 0.5rem;
-    color: #fff;
+    color: #aaa;
   }
 }
 .navigation {
@@ -69,8 +71,9 @@ export default {
     list-style: none;
     li {
       a {
+        font-family: 'Jost', sans-serif;
         transition: 0.2s color ease-in-out;
-        color: #fff;
+        color: #aaa;
         text-decoration: none;
         &:hover {
           color: #9199a1;

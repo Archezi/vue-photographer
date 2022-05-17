@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Oswald:wght@300;500;700&display=swap');
 
 :root {
   --primary: #4f515a;
@@ -9,7 +9,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Jost', sans-serif;
+  font-family: 'Oswald', sans-serif;
   color: var(--primary);
   box-sizing: border-box;
 }
@@ -43,7 +44,7 @@ button:disabled {
 
 /* forms */
 form {
-  max-width: 25rem;
+  
   margin: 0 auto;
   padding: 1.875rem;
   border-radius: 0.5rem;
@@ -51,26 +52,31 @@ form {
   border: 1px solid  var(--secondary);
   background: white;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 
 }
 input, textarea {
   border: 0;
   border-bottom: 1px solid var(--secondary);
-  padding: 0.625rem;
+  padding: 0.625rem 0;
   outline: none;
   display: block;
   width: 100%;
   box-sizing: border-box;
   margin: 1.25rem auto;
+  font-weight: 300;
 
 }
 input[type="file"] {
   border: 0;
   padding: 0;
+  
 }
 label {
   font-size:0.75rem;
   margin-top: 1.875rem;
+  font-weight: 400;
 }
 /* error text */
 .error {
