@@ -1,4 +1,7 @@
 <template>
+  <div class="container btn-hide-admin">
+    <button class="btn" @click="user = !user">test-mode</button>
+  </div>
   <div class="wrapper" v-if="user">
     <div class="container">
       <div class="collection-name-panel">
@@ -14,7 +17,7 @@
     </div>
   </div>
 
-  <div class="">
+  <div class="container">
     <TransitionGroup tag="div" class="photo-library" name="list">
       <li class="single-image" v-for="prod in product.photos" :key="prod.id">
         <img :src="prod.url" :alt="prod.title" />
@@ -99,18 +102,7 @@ export default {
     overflow: hidden;
   }
 }
-.admin {
-  padding: 2rem;
-  display: flex;
-  width: 100%;
-  align-content: center;
-  justify-content: center;
-  button {
-    height: 50px;
-    display: block;
-    margin-left: auto;
-  }
-}
+
 .photo-library {
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
@@ -119,11 +111,22 @@ export default {
 .single-image {
   overflow: hidden;
   list-style: none;
+  position: relative;
   img {
     max-width: 100%;
     max-height: 100%;
     object-fit: scale-down;
     overflow: hidden;
+  }
+  .delete-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--warning);
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
   }
 }
 .list-enter-active,
@@ -162,5 +165,11 @@ export default {
   h4 {
     margin-left: 1rem;
   }
+}
+.btn-hide-admin {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 2rem;
 }
 </style>

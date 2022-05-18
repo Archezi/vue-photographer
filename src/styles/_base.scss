@@ -99,3 +99,12 @@ label {
 .v-leave-to {
   opacity: 0;
 }
+.btn-delete {
+  background: var(--warning);
+  color: white;
+  // margin-left: 1.25rem;
+  &:hover {
+    background: var(--primary);
+    color: white;
+  }
+}
