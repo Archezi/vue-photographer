@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-section">
+  <div class="admin-section container">
     <div v-if="user" class="button-add">
       <h4>Products Collection</h4>
       <div class="buttons">
@@ -8,12 +8,12 @@
       </div>
     </div>
     <transition>
-      <create-collection-product v-if="addNew"></create-collection-product>
+      <product-create-collection v-if="addNew"></product-create-collection>
     </transition>
   </div>
   <!-- Collection list  -->
 
-  <div class="content">
+  <div class="content container">
     <products-list :products="products"></products-list>
   </div>
 </template>
@@ -21,11 +21,11 @@
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import CreateCollectionProduct from '../../components/collections/CreateCollectionProduct.vue'
+import ProductCreateCollection from '../../components/product/ProductCreateCollection.vue'
 import getCollection from '@/composables/getCollection'
-import ProductsList from '../../components/collections/product/ProductsList.vue'
+import ProductsList from '../../components/product/ProductsList.vue'
 export default {
-  components: { CreateCollectionProduct, ProductsList },
+  components: { ProductCreateCollection, ProductsList },
   setup() {
     const { error, documents: products } = getCollection('products')
     let addNew = ref(false)
@@ -39,8 +39,6 @@ export default {
 .admin-section {
   position: relative;
   justify-content: center;
-
-  padding: 2rem;
 }
 .button-add {
   position: relative;
@@ -58,13 +56,8 @@ export default {
 }
 .content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 400px;
-  transition: all 0.5s ease-out;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-flow: row;
   gap: 1rem;
-  .product-collection {
-    max-height: 100%;
-    overflow: hidden;
-  }
 }
 </style>

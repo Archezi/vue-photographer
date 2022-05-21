@@ -30,12 +30,12 @@ const routes = [
   {
     path: '/weddings',
     name: 'Weddings',
-    component: () => import('../views/collections/CollectionWedding.vue')
+    component: () => import('../views/weddings/WeddingsCollections.vue')
   },
   {
     path: '/products',
     name: 'Products',
-    component: () => import('../views/collections/CollectionProducts.vue')
+    component: () => import('../views/products/ProductsCollection.vue')
   },
   {
     path: '/products/:id',

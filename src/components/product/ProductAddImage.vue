@@ -24,11 +24,6 @@
       </form>
     </div>
   </div>
-  <!-- <form @submit.prevent="handleSubmit">
-    <input type="file" @change="handleChange" />
-    <input type="text" placeholder="title" v-model="title" />
-    <button>Add</button>
-  </form> -->
 </template>
 
 <script>
@@ -101,6 +96,7 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   box-sizing: content-box;
+  height: 100%;
 }
 .image-preview {
   border: 1px solid #ccc;
@@ -110,12 +106,15 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 500px;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     overflow: hidden;
   }
+}
+.create-btn {
+  margin-top: auto;
 }
 </style>

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Oswald:wght@300;500;700&display=swap');
-
+// @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Oswald:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Raleway:wght@200;300;400;700&display=swap');
 :root {
   --primary: #4f515a;
   --secondary: #ebebeb;
@@ -9,7 +9,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-family: 'Oswald', sans-serif;
   color: var(--primary);
   box-sizing: border-box;
@@ -85,6 +85,7 @@ label {
   margin: 1rem 0;
 }
 .container {
+  position: relative;
   max-width: 75rem;
   padding: 0 3.125rem;
   margin: 0 auto;

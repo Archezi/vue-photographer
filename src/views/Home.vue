@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper
-      :slidesPerView="'1.186'"
+      :slidesPerView="'1.7'"
       :centeredSlides="true"
       :spaceBetween="0"
       :loop="true"
@@ -31,6 +31,7 @@ import 'swiper/modules/navigation/navigation'
 import { Navigation } from 'swiper'
 // import collection
 import getCollection from '@/composables/getCollection'
+import { ref } from 'vue'
 export default {
   name: 'Home',
   components: {
@@ -39,6 +40,8 @@ export default {
   },
   setup() {
     const { error, documents: products } = getCollection('products')
+    const s = ref(products)
+    console.log(s)
     return {
       modules: [Navigation],
       error,
@@ -49,7 +52,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  height: 911px;
+  position: relative;
+  height: var(--swiper-height);
   position: relative;
 }
 .swiper {
@@ -60,38 +64,25 @@ export default {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #000;
 
   /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
 }
 .swiper-slide a {
-  height: 100%;
   width: 100%;
+  // height: 100%;
 }
 .swiper-slide img {
-  opacity: 0.5;
+  opacity: 0.8;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: all 0.5s ease-in-out;
-  filter: blur(2px);
+  // filter: blur(2px);
 }
 .swiper-slide-active img {
   opacity: 1;
-  filter: blur(0px);
+  // filter: blur(0px);
 }
 .swiper-slide {
   width: 60%;

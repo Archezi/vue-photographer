@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
-    <h1>Lukasz Kaczmarek</h1>
-    <h2>Frontend Developer</h2>
+    <h1>Izabella Grin</h1>
+    <h2>Fotografer</h2>
   </div>
 </template>
 
@@ -18,8 +18,8 @@ export default {
   font-family: 'Oswald', sans-serif;
   text-align: center;
   letter-spacing: 0px;
-  font-size: 2.5rem;
-  line-height: 1.2em;
+  font-size: 1.5rem;
+  line-height: 1.1em;
   font-weight: 400;
   cursor: pointer;
   text-align: left;
@@ -29,7 +29,8 @@ export default {
   }
   h2 {
     color: #aaa;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    line-height: 0.9em;
     font-weight: 200;
   }
 }

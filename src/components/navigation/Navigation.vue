@@ -6,6 +6,13 @@
           <router-link :to="{ name: 'Home' }">Home</router-link>
         </li>
         <li class="navigation-item">
+          <router-link to="/Commercial">About</router-link>
+        </li>
+        <li class="navigation-item">
+          <router-link to="/Commercial">Commercial</router-link>
+        </li>
+
+        <li class="navigation-item">
           <router-link to="/Commercial">Commercial</router-link>
         </li>
         <li class="navigation-item">
@@ -14,15 +21,8 @@
         <li class="navigation-item">
           <router-link :to="{ name: 'Products' }">Products</router-link>
         </li>
-        <li v-if="!user" class="navigation-item">
-          <router-link :to="{ name: 'Login' }">Login</router-link>
-        </li>
       </ul>
     </nav>
-    <div v-if="user" class="user">
-      <div class="user-name">Hi Lukasz</div>
-      <button @click="handleClick">Log Out</button>
-    </div>
   </div>
 </template>
 

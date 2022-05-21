@@ -25,16 +25,18 @@ Navigation
 
 <style lang="scss" scoped>
 .header {
+  max-height: 80px;
   &-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 3.125rem;
+    padding: 1rem 3.125rem;
     width: 100%;
     margin-inline: auto;
   }
   .logo {
     margin-right: auto;
+    max-height: 50px;
   }
   .name {
     margin-inline: auto;

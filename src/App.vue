@@ -5,6 +5,7 @@
       <router-view />
     </div>
   </div>
+  <the-footer></the-footer>
 </template>
 <script>
 export default {}

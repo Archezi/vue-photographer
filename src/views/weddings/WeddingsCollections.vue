@@ -1,11 +1,9 @@
 <template>
-  <div></div>
-  <add-image :product="product"></add-image>
+  <div>Weddings</div>
 </template>
 
 <script>
 export default {
-  props: ['product'],
   setup() {
     return {}
   }

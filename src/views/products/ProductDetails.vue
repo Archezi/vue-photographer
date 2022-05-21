@@ -1,7 +1,4 @@
 <template>
-  <div class="container btn-hide-admin">
-    <button class="btn" @click="user = !user">test-mode</button>
-  </div>
   <div class="wrapper" v-if="user">
     <div class="container">
       <div class="collection-name-panel">
@@ -13,13 +10,16 @@
           Delete collection
         </button>
       </div>
-      <add-image :product="product"></add-image>
+      <product-add-image :product="product"></product-add-image>
     </div>
   </div>
 
   <div class="container">
-    <TransitionGroup tag="div" class="photo-library" name="list">
-      <li class="single-image" v-for="prod in product.photos" :key="prod.id">
+    <div v-if="!product.photos.length" class="empty-list">
+      <h4>No products in this collection</h4>
+    </div>
+    <div v-if="product.photos.length" class="photo-library" name="list">
+      <div class="single-image" v-for="prod in product.photos" :key="prod.id">
         <img :src="prod.url" :alt="prod.title" />
         <div
           v-if="user"
@@ -28,8 +28,28 @@
         >
           X
         </div>
-      </li>
-    </TransitionGroup>
+      </div>
+    </div>
+  </div>
+  <div class="slider-content">
+    <swiper
+      :slidesPerView="'2.2'"
+      :centeredSlides="true"
+      :spaceBetween="0"
+      :loop="true"
+      :navigation="true"
+      :pagination="{
+        clickable: true
+      }"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <swiper-slide v-for="(slide, index) in product.photos" :key="index">
+        <router-link :to="{ name: 'Products' }">
+          <img :src="slide.url" alt="" />
+        </router-link>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
@@ -38,10 +58,18 @@ import useDocuemnt from '@/composables/useDocument'
 import getDocument from '@/composables/getDocument'
 import useStorage from '@/composables/useStorage'
 import { useRouter } from 'vue-router'
-import AddImage from '../../components/collections/AddImage.vue'
+import ProductAddImage from '../../components/product/ProductAddImage.vue'
 import getUser from '@/composables/getUser'
+
+import { Swiper } from 'swiper/vue/swiper'
+import { SwiperSlide } from 'swiper/vue/swiper-slide'
+// Import Swiper styles
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/modules/navigation/navigation'
+// import required modules
+import { Navigation } from 'swiper'
 export default {
-  components: { AddImage },
+  components: { ProductAddImage, Swiper, SwiperSlide },
   props: ['id'],
   setup(props) {
     const { user } = getUser()
@@ -83,7 +111,8 @@ export default {
       handleDelete,
       handleDeleteImage,
       user,
-      coniframtion
+      coniframtion,
+      modules: [Navigation]
     }
   }
 }
@@ -104,14 +133,20 @@ export default {
 }
 
 .photo-library {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  display: colums;
+  columns: 3;
+  column-gap: 1rem;
+  // display: grid;
+  // grid-template-columns: repeat(3, 1fr));
   gap: 1rem;
+  // grid-template-rows: masonry;
+  // align-tracks: end;
 }
 .single-image {
   overflow: hidden;
   list-style: none;
   position: relative;
+  margin-bottom: 1rem;
   img {
     max-width: 100%;
     max-height: 100%;
@@ -171,5 +206,69 @@ export default {
   justify-content: flex-end;
   align-items: flex-end;
   margin-bottom: 2rem;
+}
+
+// Slider
+.slider-content {
+  height: 911px;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.swiper-slide a {
+  height: 100%;
+  width: 100%;
+}
+.swiper-slide img {
+  opacity: 0.8;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.5s ease-in-out;
+  // filter: blur(2px);
+}
+.swiper-slide-active img {
+  opacity: 1;
+  // filter: blur(0px);
+}
+.swiper-slide {
+  width: 60%;
+}
+
+.swiper-slide:nth-child(2n) {
+  width: 40%;
+}
+
+.swiper-slide:nth-child(3n) {
+  width: 20%;
+}
+.swiper-button-next {
+  height: 100% !important;
+  top: 46.5% !important;
+  transform: translateY(-50%);
+}
+.swiper-button-next:focus-visible {
+  outline: none;
 }
 </style>

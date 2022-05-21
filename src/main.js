@@ -4,10 +4,11 @@ import router from './router'
 // import { projectAuth } from './firebase/config'
 
 import TheHeader from './components/UI/TheHeader.vue'
-
+import TheFooter from './components/UI/TheFooter.vue'
 let app = createApp(App)
 
 app.component('the-header', TheHeader)
+app.component('the-footer', TheFooter)
 
 app.use(router)
 
