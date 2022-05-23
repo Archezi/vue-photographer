@@ -1,52 +1,33 @@
 <template>
-  <div class="wrapper" v-if="user">
+  <div>
+    <utility-bar
+      @create-collection="addNew = !addNew"
+      :collection="collectionName"
+      :deleteCollection="deleteCollection"
+    ></utility-bar>
     <div class="container">
-      <div class="collection-name-panel">
-        <span class="collection-name"
-          >Current collection Name:
-          <h4 class="">{{ product.name }}</h4></span
-        >
-        <button class="btn btn-delete" @click="coniframtion">
-          Delete collection
-        </button>
-      </div>
-      <product-add-image :product="product" :mode="1"></product-add-image>
+      <product-add-image v-if="addNew" :product="product"></product-add-image>
     </div>
-  </div>
-
-  <!-- <div class="container">
-    <div v-if="!product.photos.length" class="empty-list">
-      <h4>No products in this collection</h4>
+    <div class="slider-content">
+      <SwiperComponent :slider="product" :numberOfSlides="1" />
     </div>
-    <div v-if="product.photos.length" class="photo-library" name="list">
-      <div class="single-image" v-for="prod in product.photos" :key="prod.id">
-        <img :src="prod.url" :alt="prod.title" />
-        <div
-          v-if="user"
-          @click="handleDeleteImage(prod.id)"
-          class="delete-image"
-        >
-          X
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <div class="slider-content">
-    <SwiperComponent :slider="product" :numberOfSlides="1" />
   </div>
 </template>
 
 <script>
-import useDocuemnt from '@/composables/useDocument'
-import getDocument from '@/composables/getDocument'
-import useStorage from '@/composables/useStorage'
 import { useRouter } from 'vue-router'
-import ProductAddImage from '../../components/product/ProductAddImage.vue'
+import getDocument from '@/composables/getDocument'
 import getUser from '@/composables/getUser'
+import useDocuemnt from '@/composables/useDocument'
+import useStorage from '@/composables/useStorage'
+import { ref } from 'vue'
+// components
+import ProductAddImage from '../../components/product/ProductAddImage.vue'
 // swiper
 import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
+import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductAddImage, SwiperComponent },
+  components: { ProductAddImage, SwiperComponent, UtilityBar },
   props: ['id'],
   setup(props) {
     const { user } = getUser()
@@ -54,12 +35,13 @@ export default {
     const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
-
+    const collectionName = ref('details')
+    const addNew = ref(false)
+    const deleteCollection = ref(true)
     // Delete all collection
     const coniframtion = () => {
       if (window.confirm('Are you sure you want to delete this collection?')) {
         handleDelete()
-        console.log('delete')
         router.push({ name: 'Products' })
       }
     }
@@ -88,7 +70,10 @@ export default {
       handleDelete,
       handleDeleteImage,
       user,
-      coniframtion
+      coniframtion,
+      collectionName,
+      addNew,
+      deleteCollection
     }
   }
 }

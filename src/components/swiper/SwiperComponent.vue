@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .slider-wrapper {
   position: relative;
-  height: var(--swiper-height);
+  height: var(--swiper-height-2);
 }
 .swiper {
   width: 100%;

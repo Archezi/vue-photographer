@@ -1,23 +1,13 @@
 <template>
-  <div class="admin-section container">
-    <!-- <div v-if="user" class="button-add">
-      <h4>Products Collection</h4>
-      <div class="buttons">
-        <button v-if="!addNew" @click="addNew = !addNew">Add new</button>
-        <button v-else @click="addNew = !addNew">Close</button>
-      </div>
-    </div> -->
-    <transition>
-      <product-create-collection v-if="addNew"></product-create-collection>
-    </transition>
-  </div>
-  <!-- Collection list  -->
-  <utility-bar collection="Producs Collection"></utility-bar>
+  <utility-bar
+    @create-collection="addNew = !addNew"
+    :collection="collectionName"
+  ></utility-bar>
+  <product-create-collection v-if="addNew"></product-create-collection>
   <div class="content container">
     <products-list :products="products"></products-list>
   </div>
 </template>
-
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
@@ -30,8 +20,9 @@ export default {
   setup() {
     const { error, documents: products } = getCollection('products')
     let addNew = ref(false)
+    const collectionName = ref('Products Collection')
     const { user } = getUser()
-    return { user, addNew, products, error }
+    return { user, addNew, products, error, collectionName }
   }
 }
 </script>

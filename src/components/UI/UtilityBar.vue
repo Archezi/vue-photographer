@@ -93,11 +93,30 @@
               </svg>
             </div>
           </div>
-          <div class="admin-call-to-action">
-            <button class="" @click="$emit('create-collection')">
-              Create Collection
+          <div class="admin-call-to-action" v-if="user">
+            <button
+              v-if="!addNewCollection"
+              @click="$emit('createCollection'), toggleAddNewCollection()"
+            >
+              Add New
             </button>
-            <button class="" @click="$emit('log-out')">Log Out</button>
+            <button
+              v-if="addNewCollection"
+              @click="$emit('createCollection'), toggleAddNewCollection()"
+            >
+              Close
+            </button>
+            <button @click="$emit('addNewImage')" v-if="addNewImage">
+              Add New Image
+            </button>
+            <button
+              class="delete-collection"
+              v-if="deleteCollection"
+              @click="$emit('deleteCollection')"
+            >
+              Delete Collection
+            </button>
+            <button @click="handleLogout">Log Out</button>
           </div>
         </div>
       </div>
@@ -106,10 +125,32 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+import useLogout from '@/composables/useLogout'
+import getUser from '@/composables/getUser'
 export default {
-  props: ['collection'],
+  props: ['collection', 'addNewImage', 'deleteCollection'],
   setup() {
-    return {}
+    const { logout, isPending } = useLogout()
+    const { user } = getUser()
+    const addNewCollection = ref(false)
+    // logout
+    const handleLogout = async () => {
+      await logout()
+      console.log('user logged out')
+    }
+    const toggleAddNewCollection = () => {
+      addNewCollection.value = !addNewCollection.value
+      console.log('add new collection', addNewCollection.value)
+    }
+    return {
+      toggleAddNewCollection,
+      addNewCollection,
+      handleLogout,
+      logout,
+      user,
+      isPending
+    }
   }
 }
 </script>
@@ -184,6 +225,7 @@ export default {
     box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   }
 }
+
 .utility-bar-call-to-action button {
   height: 32px;
   padding: 0 0.5rem;
@@ -195,6 +237,11 @@ export default {
   transition: all 0.3s ease-in-out;
   &:hover {
     background: var(--primary);
+  }
+}
+button.delete-collection {
+  &:hover {
+    background: var(--warning);
   }
 }
 </style>

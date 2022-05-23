@@ -10,6 +10,7 @@ h4 {
   --combined-footer-header: calc(var(--heder-height) + var(--footer-height));
   --content: calc(100vh - var(--combined-footer-header));
   --swiper-height: calc(100vh - var(--combined-footer-header));
+  --swiper-height-2: calc(100vh - var(--heder-height) - var(--footer-height) - var(--utility-bar-height));
 }
 
 

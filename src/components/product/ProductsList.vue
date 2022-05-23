@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="product-collection"
-    v-for="product in products"
-    :key="product.uid"
-  >
+  <div class="product-collection" v-for="product in products" :key="product.id">
     <router-link
       class="product-link"
       :to="{ name: 'Product', params: { id: product.id } }"
