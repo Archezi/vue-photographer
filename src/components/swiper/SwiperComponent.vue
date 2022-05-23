@@ -1,7 +1,7 @@
 <template>
   <div class="slider-wrapper">
     <swiper
-      :slidesPerView="'1.7'"
+      :slidesPerView="numberOfSlides"
       :centeredSlides="true"
       :spaceBetween="0"
       :loop="true"
@@ -12,9 +12,9 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="(slide, index) in slider" :key="index">
+      <swiper-slide v-for="slide in slider.photos" :key="slide">
         <router-link :to="{ name: 'Products' }">
-          <img :src="slide.imageUrl" alt="" />
+          <img :src="slide.url" alt="" />
         </router-link>
       </swiper-slide>
     </swiper>
@@ -30,12 +30,13 @@ import 'swiper/modules/navigation/navigation'
 // import required modules
 import { Navigation } from 'swiper'
 export default {
-  props: ['slider'],
+  props: ['slider', 'numberOfSlides'],
   components: {
     Swiper,
     SwiperSlide
   },
-  setup() {
+  setup(props) {
+    console.log(props.slider)
     return {
       modules: [Navigation]
     }
@@ -63,12 +64,13 @@ export default {
   width: 100%;
   // height: 100%;
 }
+
 .swiper-slide img {
   opacity: 0.8;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: all 0.5s ease-in-out;
   // filter: blur(2px);
 }

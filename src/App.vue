@@ -1,9 +1,7 @@
 <template>
   <the-header></the-header>
-  <div class="">
-    <div class="">
-      <router-view />
-    </div>
+  <div class="content">
+    <router-view />
   </div>
   <the-footer></the-footer>
 </template>
@@ -12,6 +10,7 @@ export default {}
 </script>
 <style lang="scss">
 @import '@/styles/_shared.scss';
+@import '@/styles/_variables.scss';
 #app {
   font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,7 +18,7 @@ export default {}
   text-align: center;
 }
 .content {
-  padding-top: 80px;
+  margin: var(--content-margin) 0;
 }
 #nav {
   padding: 30px;

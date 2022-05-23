@@ -1,0 +1,15 @@
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-family: swiper-icons;
+  /* font-size: var(--swiper-navigation-size); */
+  font-size: 22px;
+  text-transform: none!important;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant: initial;
+  line-height: 1;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(0,0,0,.1);
+  color: #fff;
+}

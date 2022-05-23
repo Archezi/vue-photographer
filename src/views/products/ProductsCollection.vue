@@ -1,18 +1,18 @@
 <template>
   <div class="admin-section container">
-    <div v-if="user" class="button-add">
+    <!-- <div v-if="user" class="button-add">
       <h4>Products Collection</h4>
       <div class="buttons">
         <button v-if="!addNew" @click="addNew = !addNew">Add new</button>
         <button v-else @click="addNew = !addNew">Close</button>
       </div>
-    </div>
+    </div> -->
     <transition>
       <product-create-collection v-if="addNew"></product-create-collection>
     </transition>
   </div>
   <!-- Collection list  -->
-
+  <utility-bar collection="Producs Collection"></utility-bar>
   <div class="content container">
     <products-list :products="products"></products-list>
   </div>
@@ -24,8 +24,9 @@ import getUser from '@/composables/getUser'
 import ProductCreateCollection from '../../components/product/ProductCreateCollection.vue'
 import getCollection from '@/composables/getCollection'
 import ProductsList from '../../components/product/ProductsList.vue'
+import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductCreateCollection, ProductsList },
+  components: { ProductCreateCollection, ProductsList, UtilityBar },
   setup() {
     const { error, documents: products } = getCollection('products')
     let addNew = ref(false)
@@ -55,6 +56,7 @@ export default {
   }
 }
 .content {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-flow: row;

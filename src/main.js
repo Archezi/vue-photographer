@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 // import { projectAuth } from './firebase/config'
-
+import './styles/_shared.scss'
 import TheHeader from './components/UI/TheHeader.vue'
 import TheFooter from './components/UI/TheFooter.vue'
 let app = createApp(App)

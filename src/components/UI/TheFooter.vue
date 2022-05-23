@@ -1,6 +1,6 @@
 <template>
   <div class="footer-wrapper">
-    <div class="container footer-container">
+    <div class="container footer-content">
       <div class="footer-social-links">
         <Social></Social>
       </div>
@@ -11,10 +11,10 @@
         <div v-if="!user" class="login-content">
           <router-link :to="{ name: 'Login' }">Login</router-link>
         </div>
-        <div v-if="user" class="login-content">
+        <!-- <div v-if="user" class="login-content">
           <div class="user-name">Hi, Iza</div>
           <button @click="handleClick">Log Out</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -49,30 +49,24 @@ export default {
   &-wrapper {
     position: fixed;
     bottom: 0;
+    background: #fff;
     height: var(--footer-height);
     width: 100%;
+    z-index: 999;
   }
-  &-container {
+  &-content {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     height: 100%;
     width: 100%;
-    padding: 0.5rem 0;
   }
   &-social-links {
     margin-right: auto;
   }
-}
-.login {
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0;
-}
-.login-content {
-  display: flex;
-
-  align-items: center;
-  gap: 1rem;
+  &-phone p {
+    color: #7a7f8c;
+    font-size: 1.125rem;
+  }
 }
 </style>

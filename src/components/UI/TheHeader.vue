@@ -24,8 +24,17 @@ Navigation
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/_variables.scss';
 .header {
+  box-sizing: border-box;
   max-height: 80px;
+  background: #fff;
+  height: var(--header-height);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
   &-container {
     display: flex;
     justify-content: center;

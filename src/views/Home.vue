@@ -88,19 +88,19 @@ export default {
   width: 60%;
 }
 
-.swiper-slide:nth-child(2n) {
-  width: 40%;
-}
+// .swiper-slide:nth-child(2n) {
+//   width: 40%;
+// }
 
-.swiper-slide:nth-child(3n) {
-  width: 20%;
-}
-.swiper-button-next {
-  height: 100% !important;
-  top: 46.5% !important;
-  transform: translateY(-50%);
-}
-.swiper-button-next:focus-visible {
-  outline: none;
-}
+// .swiper-slide:nth-child(3n) {
+//   width: 20%;
+// }
+// .swiper-button-next {
+//   height: 100% !important;
+//   top: 46.5% !important;
+//   transform: translateY(-50%);
+// }
+// .swiper-button-next:focus-visible {
+//   outline: none;
+// }
 </style>

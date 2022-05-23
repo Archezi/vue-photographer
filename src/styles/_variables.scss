@@ -4,7 +4,9 @@ h4 {
 }
 :root {
   --heder-height: 5rem;
-  --footer-height: 5rem;
+  --footer-height: 3rem;
+  --content-margin: var(--heder-height);
+  --utility-bar-height: calc( (var(--heder-height) - var(--footer-height)) - 2px);
   --combined-footer-header: calc(var(--heder-height) + var(--footer-height));
   --content: calc(100vh - var(--combined-footer-header));
   --swiper-height: calc(100vh - var(--combined-footer-header));

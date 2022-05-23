@@ -15,10 +15,12 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
+  max-height: calc(50 / 16) rem;
+  height: 50px;
   font-family: 'Oswald', sans-serif;
   text-align: center;
   letter-spacing: 0px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.1em;
   font-weight: 400;
   cursor: pointer;
