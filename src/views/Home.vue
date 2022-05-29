@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper
-      :slidesPerView="'1.7'"
+      :slidesPerView="'1'"
       :centeredSlides="true"
       :spaceBetween="0"
       :loop="true"
@@ -12,15 +12,17 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="(slide, index) in products" :key="index">
+      <swiper-slide v-for="(slide, index) in homeList" :key="index">
         <router-link :to="{ name: 'Products' }">
-          <img :src="slide.imageUrl" alt="" />
+          <!-- <img :src="slide.img" alt="" /> -->
+          <img :src="require(`@/assets/mainPage/${slide.img}`)" />
         </router-link>
       </swiper-slide>
     </swiper>
   </div>
 </template>
 <script>
+import { reactive } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper } from 'swiper/vue/swiper'
 import { SwiperSlide } from 'swiper/vue/swiper-slide'
@@ -40,12 +42,24 @@ export default {
   },
   setup() {
     const { error, documents: products } = getCollection('products')
+    const homeList = reactive([
+      {
+        img: 'img1.jpg'
+      },
+      {
+        img: 'img2.jpg'
+      },
+      {
+        img: 'img3.jpg'
+      }
+    ])
     const s = ref(products)
     console.log(s)
     return {
       modules: [Navigation],
       error,
-      products
+      products,
+      homeList
     }
   }
 }
