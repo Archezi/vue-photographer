@@ -12,7 +12,7 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="slide in slider.photos" :key="slide">
+      <swiper-slide v-for="slide in slider" :key="slide">
         <router-link :to="{ name: 'Products' }">
           <img :src="slide.url" alt="" />
         </router-link>
@@ -46,14 +46,21 @@ export default {
 
 <style lang="scss" scoped>
 .slider-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 12.66fr 1fr;
+  grid-template-areas: 'A B C';
   position: relative;
-  height: var(--swiper-height-2);
+  background: #f8f8f8;
 }
 .swiper {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
-
+.mySwiper {
+  grid-area: B;
+  height: var(--swiper-height);
+  background: #f8f8f8;
+}
 .swiper-slide {
   text-align: center;
   font-size: 18px;

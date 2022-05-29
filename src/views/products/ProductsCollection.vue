@@ -3,8 +3,10 @@
     @create-collection="addNew = !addNew"
     :collection="collectionName"
   ></utility-bar>
-  <product-create-collection v-if="addNew"></product-create-collection>
-  <div class="content container">
+  <div>
+    <product-create-collection v-if="addNew"></product-create-collection>
+  </div>
+  <div class="product-collection_content container">
     <products-list :products="products"></products-list>
   </div>
 </template>
@@ -28,6 +30,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dropdown {
+  height: 0;
+}
 .admin-section {
   position: relative;
   justify-content: center;
@@ -46,11 +51,12 @@ export default {
     transform: translateY(-50%);
   }
 }
-.content {
+.product-collection_content {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-flow: row;
   gap: 1rem;
+  padding-bottom: calc(var(--footer-height) + 1rem);
 }
 </style>

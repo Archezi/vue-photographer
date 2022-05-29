@@ -8,8 +8,13 @@
     <div class="container">
       <product-add-image v-if="addNew" :product="product"></product-add-image>
     </div>
-    <div class="slider-content">
-      <SwiperComponent :slider="product" :numberOfSlides="1" />
+    <div v-if="!product.photos.length">
+      <h3>No images yet</h3>
+
+      <button @click="addNew = !addNew">Add new image</button>
+    </div>
+    <div v-if="product.photos.length" class="slider-content">
+      <SwiperComponent :slider="product.photos" :numberOfSlides="1" />
     </div>
   </div>
 </template>
@@ -139,5 +144,8 @@ export default {
   justify-content: flex-end;
   align-items: flex-end;
   margin-bottom: 2rem;
+}
+.dropdown {
+  height: 0;
 }
 </style>

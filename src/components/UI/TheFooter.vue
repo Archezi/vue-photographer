@@ -47,9 +47,10 @@ export default {
 @import '@/styles/_variables.scss';
 .footer {
   &-wrapper {
-    position: fixed;
+    position: relative;
     bottom: 0;
-    background: #fff;
+    background: #f8f8f8;
+
     height: var(--footer-height);
     width: 100%;
     z-index: 999;

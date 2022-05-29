@@ -3,14 +3,16 @@ h4 {
   font-weight: 400;
 }
 :root {
-  --heder-height: 5rem;
-  --footer-height: 3rem;
+  --heder-height: calc(var(--vh, 1vh) * 11.11111);
+  --footer-height: calc(var(--vh, 1vh) * 11.11111);
+  --utility-bar-height: calc(2rem -2px);
   --content-margin: var(--heder-height);
-  --utility-bar-height: calc( (var(--heder-height) - var(--footer-height)) - 2px);
   --combined-footer-header: calc(var(--heder-height) + var(--footer-height));
   --content: calc(100vh - var(--combined-footer-header));
-  --swiper-height: calc(100vh - var(--combined-footer-header));
+  --swiper-height: calc(100vh - (var(--heder-height) *2));
+
   --swiper-height-2: calc(100vh - var(--heder-height) - var(--footer-height) - var(--utility-bar-height));
+  --home-slider-margin-center: calc((100vh - ( 100vh - (var(--heder-height)*2))) /2 );
 }
 
 

@@ -98,6 +98,7 @@ export default {
   box-sizing: content-box;
   height: 100%;
 }
+
 .image-preview {
   border: 1px solid #ccc;
   border-radius: 5px;

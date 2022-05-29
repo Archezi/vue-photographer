@@ -52,13 +52,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
+  display: grid;
+  grid-template-columns: 1fr 12.66fr 1fr;
+  grid-template-areas: 'A B C';
   position: relative;
+
+  position: relative;
+  background: #f8f8f8;
+}
+.mySwiper {
+  grid-area: B;
   height: var(--swiper-height);
-  position: relative;
 }
 .swiper {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
 
 .swiper-slide {
@@ -84,9 +92,9 @@ export default {
   opacity: 1;
   // filter: blur(0px);
 }
-.swiper-slide {
-  width: 60%;
-}
+// .swiper-slide {
+//   width: 60%;
+// }
 
 // .swiper-slide:nth-child(2n) {
 //   width: 40%;

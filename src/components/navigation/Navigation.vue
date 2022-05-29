@@ -6,10 +6,10 @@
           <router-link :to="{ name: 'Home' }">Home</router-link>
         </li>
         <li class="navigation-item">
-          <router-link to="/Commercial">About</router-link>
+          <router-link to="/about">About</router-link>
         </li>
         <li class="navigation-item">
-          <router-link to="/Commercial">Commercial</router-link>
+          <router-link to="/navigation">Navigation</router-link>
         </li>
 
         <li class="navigation-item">
@@ -56,7 +56,6 @@ export default {
     url('https://use.typekit.net/af/cf3e4e/000000000000000000010095/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
       format('opentype');
   font-display: auto;
-  font-style: italic;
   font-weight: 400;
   font-stretch: normal;
 }
