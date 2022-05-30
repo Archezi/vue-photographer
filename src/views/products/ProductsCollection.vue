@@ -15,7 +15,7 @@
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import ProductCreateCollection from '../../components/product/ProductCreateCollection.vue'
+import ProductCreateCollection from '../../components/collections/products/ProductCreateCollection.vue'
 import getCollection from '@/composables/getCollection'
 import ProductsList from '../../components/product/ProductsList.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'

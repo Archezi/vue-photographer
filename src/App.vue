@@ -25,6 +25,9 @@ export default {}
   position: relative;
   margin: var(--content-margin) 0 0 0;
 }
+.main-view {
+  min-height: var(--content);
+}
 .route-enter-from {
   opacity: 0;
   transform: translateY(-30px);

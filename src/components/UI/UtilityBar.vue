@@ -3,11 +3,11 @@
     <div class="container">
       <div class="utility-bar">
         <div class="section-name">
-          <h2>{{ collection }}</h2>
+          <div @click="goBackButton" class="go-back">Go Back</div>
         </div>
         <div class="utility-bar-call-to-action">
           <div class="utility-bar-icons">
-            <div class="slider-icon">
+            <div class="slider-icon active">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24.227"
@@ -31,7 +31,7 @@
                 </g>
               </svg>
             </div>
-            <div class="grid-icon active">
+            <div class="grid-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="19.581"
@@ -126,6 +126,7 @@
 
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import useLogout from '@/composables/useLogout'
 import getUser from '@/composables/getUser'
 export default {
@@ -133,7 +134,11 @@ export default {
   setup() {
     const { logout, isPending } = useLogout()
     const { user } = getUser()
+    const router = useRouter()
     const addNewCollection = ref(false)
+    const goBackButton = () => {
+      router.back()
+    }
     // logout
     const handleLogout = async () => {
       await logout()
@@ -149,7 +154,8 @@ export default {
       handleLogout,
       logout,
       user,
-      isPending
+      isPending,
+      goBackButton
     }
   }
 }
@@ -243,5 +249,8 @@ button.delete-collection {
   &:hover {
     background: var(--warning);
   }
+}
+.go-back {
+  cursor: pointer;
 }
 </style>

@@ -9,9 +9,8 @@
     <div class="container">
       <product-add-image v-if="addNew" :product="product"></product-add-image>
     </div>
-    <div v-if="!product.photos.length">
+    <div class="product-details__empty-container" v-if="!product.photos.length">
       <h3>No images yet</h3>
-
       <button @click="addNew = !addNew">Add new image</button>
     </div>
     <div v-if="product.photos.length" class="slider-content">
@@ -148,5 +147,17 @@ export default {
 }
 .dropdown {
   height: 0;
+}
+.product-details__empty-container {
+  min-height: calc(var(--content) - 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
 }
 </style>

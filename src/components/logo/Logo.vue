@@ -1,8 +1,10 @@
 <template>
-  <div class="logo">
-    <h1>Izabella Grin</h1>
-    <h2>Fotografer & Art Director</h2>
-  </div>
+  <router-link to="/">
+    <div class="logo">
+      <h1>Izabella Grin</h1>
+      <h2>Fotografer & Art Director</h2>
+    </div>
+  </router-link>
 </template>
 
 <script>
