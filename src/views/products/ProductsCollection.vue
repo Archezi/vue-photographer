@@ -1,13 +1,15 @@
 <template>
-  <utility-bar
-    @create-collection="addNew = !addNew"
-    :collection="collectionName"
-  ></utility-bar>
   <div>
-    <product-create-collection v-if="addNew"></product-create-collection>
-  </div>
-  <div class="product-collection_content container">
-    <products-list :products="products"></products-list>
+    <utility-bar
+      @create-collection="addNew = !addNew"
+      :collection="collectionName"
+    ></utility-bar>
+    <div>
+      <product-create-collection v-if="addNew"></product-create-collection>
+    </div>
+    <div class="product-collection_content container">
+      <products-list :products="products"></products-list>
+    </div>
   </div>
 </template>
 <script>
@@ -30,27 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dropdown {
-  height: 0;
-}
-.admin-section {
-  position: relative;
-  justify-content: center;
-}
-.button-add {
-  position: relative;
-  display: flex;
-  margin-bottom: 1rem;
-  justify-content: center;
-  align-items: center;
-
-  .buttons {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
 .product-collection_content {
   margin-top: 1rem;
   display: grid;

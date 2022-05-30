@@ -3,7 +3,7 @@
     <nav class="navigation">
       <ul class="navigation-list">
         <li class="navigation-item">
-          <router-link :to="{ name: 'Home' }">Home</router-link>
+          <router-link to="/">Home</router-link>
         </li>
         <li class="navigation-item">
           <router-link to="/about">About</router-link>
@@ -13,13 +13,13 @@
         </li>
 
         <li class="navigation-item">
-          <router-link to="/Commercial">Commercial</router-link>
+          <router-link to="/commercial">Commercial</router-link>
         </li>
         <li class="navigation-item">
-          <router-link :to="{ name: 'Weddings' }">Weddings</router-link>
+          <router-link to="/weddings">Weddings</router-link>
         </li>
         <li class="navigation-item">
-          <router-link :to="{ name: 'Products' }">Products</router-link>
+          <router-link to="/products">Products</router-link>
         </li>
       </ul>
     </nav>

@@ -51,6 +51,18 @@ export default {
       },
       {
         img: 'img3.jpg'
+      },
+      {
+        img: 'img4.jpg'
+      },
+      {
+        img: 'img5.jpg'
+      },
+      {
+        img: 'img6.jpg'
+      },
+      {
+        img: 'img7.jpg'
       }
     ])
     const s = ref(products)
@@ -80,18 +92,14 @@ export default {
 }
 .swiper {
   width: 100%;
-  // height: 100%;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-
-  /* Center slide text vertically */
 }
 .swiper-slide a {
   width: 100%;
-  // height: 100%;
 }
 .swiper-slide img {
   opacity: 0.8;
@@ -100,29 +108,8 @@ export default {
   height: 100%;
   object-fit: cover;
   transition: all 0.5s ease-in-out;
-  // filter: blur(2px);
 }
 .swiper-slide-active img {
   opacity: 1;
-  // filter: blur(0px);
 }
-// .swiper-slide {
-//   width: 60%;
-// }
-
-// .swiper-slide:nth-child(2n) {
-//   width: 40%;
-// }
-
-// .swiper-slide:nth-child(3n) {
-//   width: 20%;
-// }
-// .swiper-button-next {
-//   height: 100% !important;
-//   top: 46.5% !important;
-//   transform: translateY(-50%);
-// }
-// .swiper-button-next:focus-visible {
-//   outline: none;
-// }
 </style>

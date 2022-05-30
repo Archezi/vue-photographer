@@ -2,6 +2,7 @@
   <div>
     <utility-bar
       @create-collection="addNew = !addNew"
+      @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
     ></utility-bar>

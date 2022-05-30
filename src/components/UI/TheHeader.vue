@@ -2,36 +2,49 @@
   <header class="header">
     <div class="container header-container">
       <Logo class="logo" />
-      <navigation class="navigation"></navigation>
+      <!-- <navigation class="navigation"></navigation> -->
     </div>
-    <div class="header-navigation__button">
+    <div
+      @click="openNavigation"
+      v-if="!navOpen"
+      class="header-navigation__button"
+    >
       <div class="navigation__button-icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-        </svg>
+        <icon-menu></icon-menu>
       </div>
+    </div>
+    <div @click="closeNavigation" v-else class="header-navigation__button">
+      <div class="navigation__button-icon"><icon-close></icon-close></div>
     </div>
   </header>
 </template>
 
 <script>
-import Navigation from '@/components/navigation/Navigation.vue'
 import Logo from '@/components/logo/Logo.vue'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import IconClose from '@/components/UI/IconClose.vue'
+import IconMenu from '@/components/UI/IconMenu.vue'
 export default {
   components: {
-    Navigation,
-    Logo
+    Logo,
+    IconClose,
+    IconMenu
   },
   setup() {
-    return {}
+    const router = useRouter()
+    const navOpen = ref(false)
+    const openNavigation = () => {
+      router.push('/navigation')
+      navOpen.value = true
+    }
+    const closeNavigation = () => {
+      router.back()
+      navOpen.value = false
+    }
+    return { openNavigation, closeNavigation, navOpen }
   }
 }
-Navigation
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +91,7 @@ Navigation
     cursor: pointer;
   }
   .logo {
-    margin-right: auto;
+    // margin-right: auto;
     max-height: 50px;
   }
   .name {

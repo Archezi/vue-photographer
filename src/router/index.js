@@ -28,14 +28,19 @@ const routes = [
     component: () => import('../views/auth/Login.vue')
   },
   {
+    path: '/family',
+    name: 'Family',
+    component: () => import('../views/family/Family.vue')
+  },
+  {
+    path: '/portraits',
+    name: 'Portraits',
+    component: () => import('../views/portraits/Portraits.vue')
+  },
+  {
     path: '/weddings',
     name: 'Weddings',
     component: () => import('../views/weddings/WeddingsCollections.vue')
-  },
-  {
-    path: '/products',
-    name: 'Products',
-    component: () => import('../views/products/ProductsCollection.vue')
   },
   {
     path: '/about',
@@ -46,6 +51,16 @@ const routes = [
     path: '/navigation',
     name: 'Navigation',
     component: () => import('../views/navigation/Navigation.vue')
+  },
+  {
+    path: '/commercial',
+    name: 'Commercial',
+    component: () => import('../views/commercial/Commercial.vue')
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: () => import('../views/products/ProductsCollection.vue')
   },
   {
     path: '/products/:id',

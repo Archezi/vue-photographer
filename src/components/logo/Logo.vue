@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <h1>Izabella Grin</h1>
-    <h2>Fotografer</h2>
+    <h2>Fotografer & Art Director</h2>
   </div>
 </template>
 
@@ -21,18 +21,22 @@ export default {
   text-align: center;
   letter-spacing: 0px;
   font-size: 2rem;
-  line-height: 1.1em;
+  line-height: 1.2em;
   font-weight: 400;
   cursor: pointer;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   h1 {
     color: rgba(0, 0, 0, 0.97);
     text-transform: uppercase;
   }
   h2 {
     color: #aaa;
+
     font-size: 1rem;
-    line-height: 0.9em;
+    line-height: 1.2em;
     font-weight: 200;
   }
 }

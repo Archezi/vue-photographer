@@ -52,13 +52,9 @@ import { SwiperSlide } from 'swiper/vue/swiper-slide'
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/modules/navigation/navigation'
 // import required modules
-// import 'swiper/modules/pagination/pagination.scss'
 import { Navigation } from 'swiper'
-// import { Pagination } from 'swiper'
-
 // import collection
 import getCollection from '@/composables/getCollection'
-
 import { reactive, ref } from 'vue'
 export default {
   name: 'Home',
@@ -73,32 +69,38 @@ export default {
       {
         name: 'Home',
         path: '/',
-        image: 'wedding.jpg'
+        image: 'home1.jpg'
       },
       {
-        name: 'About',
-        path: '/about',
-        image: 'about.jpg'
-      },
-      {
-        name: 'Navigation',
-        path: '/navigation',
-        image: 'children.jpg'
+        name: 'Products',
+        path: '/products',
+        image: 'products.jpg'
       },
       {
         name: 'Commercial',
         path: '/commercial',
+        image: 'commercial.jpg'
+      },
+      {
+        name: 'Family Photos',
+        path: '/family',
+        image: 'children.jpg'
+      },
+      {
+        name: 'Portraits',
+        path: '/commercial',
         image: 'outdoor.jpg'
       },
+
       {
         name: 'Weddings',
         path: '/weddings',
         image: 'wedding.jpg'
       },
       {
-        name: 'Products',
-        path: '/products',
-        image: 'commercial.jpg'
+        name: 'About',
+        path: '/about',
+        image: 'about.jpg'
       }
     ])
     const navigationIndex = ref(null)
@@ -225,6 +227,7 @@ export default {
 .slider__navigation {
   z-index: 999;
   position: absolute;
+  width: 100%;
   bottom: 0;
   padding: 0.2rem 0;
   left: 50%;
