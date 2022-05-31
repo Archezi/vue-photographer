@@ -43,6 +43,12 @@ const routes = [
     component: () => import('../views/weddings/WeddingsCollections.vue')
   },
   {
+    path: '/weddings/:id',
+    name: 'Wedding',
+    props: true,
+    component: () => import('../views/weddings/WeddingsDetails.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/about/About.vue')

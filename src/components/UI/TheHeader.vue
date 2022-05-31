@@ -21,6 +21,7 @@
 
 <script>
 import Logo from '@/components/logo/Logo.vue'
+import { watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import IconClose from '@/components/UI/IconClose.vue'
@@ -31,9 +32,22 @@ export default {
     IconClose,
     IconMenu
   },
+
   setup() {
     const router = useRouter()
     const navOpen = ref(false)
+    // const routePath = computed(() => {
+    //   return useRouter().currentRoute.value.path
+    // })
+    watch('$route', () => {
+      console.log('route changed')
+      // navOpen.value = false
+    })
+    console.log(useRouter().currentRoute.value.path)
+
+    // if (routePath.value !== '/navigation') {
+    //   navOpen.value = false
+    // }
     const openNavigation = () => {
       router.push('/navigation')
       navOpen.value = true

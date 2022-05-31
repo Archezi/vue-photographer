@@ -1,13 +1,13 @@
 <template>
   <div>
-    <utility-bar
+    <UtilityBar
       @create-collection="addNew = !addNew"
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
-    ></utility-bar>
+    />
     <div class="container">
-      <product-add-image v-if="addNew" :product="product"></product-add-image>
+      <WeddingAddImageComponent v-if="addNew" :product="product" />
     </div>
     <div class="product-details__empty-container" v-if="!product.photos.length">
       <h3>No images yet</h3>
@@ -27,17 +27,17 @@ import useDocuemnt from '@/composables/useDocument'
 import useStorage from '@/composables/useStorage'
 import { ref } from 'vue'
 // components
-import ProductAddImage from '../../components/product/ProductAddImage.vue'
+import WeddingAddImageComponent from '../../components/collections/weddings/WeddingAddImageComponent.vue'
 // swiper
 import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductAddImage, SwiperComponent, UtilityBar },
+  components: { WeddingAddImageComponent, SwiperComponent, UtilityBar },
   props: ['id'],
   setup(props) {
     const { user } = getUser()
-    const { error, document: product } = getDocument('products', props.id)
-    const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
+    const { error, document: product } = getDocument('weddings', props.id)
+    const { deleteDocument, updateDoc } = useDocuemnt('weddings', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
     const collectionName = ref('details')

@@ -1,8 +1,8 @@
 <template>
   <router-link to="/">
     <div class="logo">
-      <h1>Izabella Grin</h1>
-      <h2>Fotografer & Art Director</h2>
+      <h1>Izabela Grin</h1>
+      <h2>Fotograf & Art Director</h2>
     </div>
   </router-link>
 </template>
@@ -31,6 +31,7 @@ export default {
   justify-content: center;
   align-items: center;
   h1 {
+    font-family: 'Cinzel', sans-serif;
     color: rgba(0, 0, 0, 0.97);
     text-transform: uppercase;
   }

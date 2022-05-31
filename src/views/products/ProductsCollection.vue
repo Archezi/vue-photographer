@@ -1,26 +1,26 @@
 <template>
   <div>
-    <utility-bar
+    <UtilityBar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
-    ></utility-bar>
+    />
     <div>
-      <product-create-collection v-if="addNew"></product-create-collection>
+      <ProductCreateCollectionComponent v-if="addNew" />
     </div>
     <div class="product-collection_content container">
-      <products-list :products="products"></products-list>
+      <ProductsList :products="products" />
     </div>
   </div>
 </template>
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import ProductCreateCollection from '../../components/collections/products/ProductCreateCollection.vue'
+import ProductCreateCollectionComponent from '../../components/collections/products/ProductCreateCollectionComponent.vue'
 import getCollection from '@/composables/getCollection'
 import ProductsList from '../../components/product/ProductsList.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductCreateCollection, ProductsList, UtilityBar },
+  components: { ProductCreateCollectionComponent, ProductsList, UtilityBar },
   setup() {
     const { error, documents: products } = getCollection('products')
     let addNew = ref(false)

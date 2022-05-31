@@ -13,7 +13,7 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(slide, index) in homeList" :key="index">
-        <router-link :to="{ name: 'Products' }">
+        <router-link to="./navigation">
           <!-- <img :src="slide.img" alt="" /> -->
           <img :src="require(`@/assets/mainPage/${slide.img}`)" />
         </router-link>

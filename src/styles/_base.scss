@@ -1,6 +1,6 @@
 // @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Oswald:wght@300;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Raleway:wght@200;300;400;700&display=swap');
-@import url("https://use.typekit.net/vpo5ivv.css");
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;1,300;1,400&display=swap');
+@import url('https://use.typekit.net/vpo5ivv.css');
 :root {
   --primary: #4f515a;
   --secondary: #ebebeb;
@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Footura PT', sans-serif;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Cinzel', sans-serif;
   color: var(--primary);
   box-sizing: border-box;
 }
@@ -23,7 +23,8 @@ a {
 }
 
 /* buttons */
-button, .btn { 
+button,
+.btn {
   background: var(--secondary);
   border-radius: 0.5rem;
   border: 0;
@@ -31,8 +32,10 @@ button, .btn {
   font-weight: 600;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Footura PT', sans-serif;
 }
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background: var(--primary);
   color: white;
 }
@@ -45,19 +48,18 @@ button:disabled {
 
 /* forms */
 form {
-  
   margin: 0 auto;
   padding: 1.875rem;
   border-radius: 0.5rem;
-  box-shadow: 1px 2px 3px rgba(50,50,50,0.05);
-  border: 1px solid  var(--secondary);
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
+  border: 1px solid var(--secondary);
   background: white;
   text-align: left;
   display: flex;
   flex-direction: column;
-
 }
-input, textarea {
+input,
+textarea {
   border: 0;
   border-bottom: 1px solid var(--secondary);
   padding: 0.625rem 0;
@@ -67,22 +69,20 @@ input, textarea {
   box-sizing: border-box;
   margin: 1.25rem auto;
   font-weight: 300;
-
 }
-input[type="file"] {
+input[type='file'] {
   border: 0;
   padding: 0;
-  
 }
 label {
-  font-size:0.75rem;
+  font-size: 0.75rem;
   margin-top: 1.875rem;
   font-weight: 400;
 }
 /* error text */
 .error {
   color: var(--warning);
-  font-size: .875rem;
+  font-size: 0.875rem;
   margin: 1rem 0;
 }
 .container {

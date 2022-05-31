@@ -253,4 +253,7 @@ button.delete-collection {
 .go-back {
   cursor: pointer;
 }
+.admin-call-to-action {
+  font-family: 'Footura PT', sans-serif;
+}
 </style>
