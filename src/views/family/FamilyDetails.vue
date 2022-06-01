@@ -5,6 +5,7 @@
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
+      :product="product"
     />
     <div class="container">
       <FamiliesAddImageComponent v-if="addNew" :product="product" />

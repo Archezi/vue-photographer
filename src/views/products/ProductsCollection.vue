@@ -3,6 +3,7 @@
     <UtilityBar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
+      :product="collectionList"
     />
     <div>
       <ProductCreateCollectionComponent v-if="addNew" />

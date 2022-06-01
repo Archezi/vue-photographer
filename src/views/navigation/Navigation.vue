@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper
-      :slidesPerView="'1.35'"
+      :slidesPerView="slidePerView"
       :centeredSlides="true"
       :spaceBetween="140"
       :loop="false"
@@ -103,6 +103,8 @@ export default {
     ])
     const { error, documents: products } = getCollection('products')
     const sliderIndex = ref(null)
+    let intFrameWidth = window.innerWidth
+    const slidePerView = ref(intFrameWidth > 992 ? '1.35' : '1')
     const navigationIndex = ref(null)
     const onSlideChange = (swiper) => {
       navigationIndex.value = swiper.activeIndex
@@ -124,7 +126,8 @@ export default {
       sliderIndex,
       navigationIndex,
       onSlideChange,
-      onSwiper
+      onSwiper,
+      slidePerView
     }
   }
 }

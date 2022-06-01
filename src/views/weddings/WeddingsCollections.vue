@@ -3,6 +3,7 @@
     <utility-bar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
+      :product="collectionList"
     ></utility-bar>
     <div>
       <WeddingCreateCollectionComponent v-if="addNew" />

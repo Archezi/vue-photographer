@@ -5,9 +5,9 @@
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
+      :product="product"
     ></utility-bar>
     <div class="container">
-      <!-- <product-add-image ></product-add-image> -->
       <ProductAddImageComponent v-if="addNew" :product="product" />
     </div>
     <div class="product-details__empty-container" v-if="!product.photos.length">
@@ -19,7 +19,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { useRouter } from 'vue-router'
 import getDocument from '@/composables/getDocument'
@@ -41,9 +40,9 @@ export default {
     const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
-    const collectionName = ref('details')
     const addNew = ref(false)
     const deleteCollection = ref(true)
+    const collectionName = ref('Products Collection')
     // Delete all collection
     const coniframtion = () => {
       if (window.confirm('Are you sure you want to delete this collection?')) {
@@ -61,7 +60,6 @@ export default {
       await deleteImage(coverPhoto)
       router.push('/products')
     }
-
     // Delete single image
     const handleDeleteImage = async (id) => {
       const photos = product.value.photos.filter((photo) => photo.id !== id)
@@ -69,7 +67,6 @@ export default {
       await deleteImage(photo.filePath)
       await updateDoc({ photos })
     }
-
     return {
       error,
       product,
@@ -114,7 +111,6 @@ export default {
     cursor: pointer;
   }
 }
-
 .photo-count {
   font-size: 0.8rem;
   font-weight: 200;
@@ -145,9 +141,6 @@ export default {
   justify-content: flex-end;
   align-items: flex-end;
   margin-bottom: 2rem;
-}
-.dropdown {
-  height: 0;
 }
 .product-details__empty-container {
   min-height: calc(var(--content) - 34px);

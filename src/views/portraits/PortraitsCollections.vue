@@ -3,6 +3,7 @@
     <utility-bar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
+      :product="collectionList"
     ></utility-bar>
     <div>
       <PortraitsCreateCollectionComponent v-if="addNew" />
@@ -29,7 +30,7 @@ export default {
   setup() {
     const { error, documents: collectionList } = getCollection('portraits')
     let addNew = ref(false)
-    const collectionName = ref('Wedding Collection')
+    const collectionName = ref('Portraits Collection')
     const { user } = getUser()
     return { user, addNew, collectionList, error, collectionName }
   }

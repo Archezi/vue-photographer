@@ -3,7 +3,6 @@
     <form @submit.prevent="handleSubmit">
       <h4>Add new collection</h4>
       <input type="text" placeholder="Title" v-model="collectionName" />
-
       <label for="">Choose image for the collection</label>
       <input type="file" @change="handleChange" />
       <div class="error" v-if="fileError">{{ fileError }}</div>
@@ -11,7 +10,6 @@
     </form>
   </div>
 </template>
-
 <script>
 import { ref } from 'vue'
 import useStorage from '@/composables/useStorage'

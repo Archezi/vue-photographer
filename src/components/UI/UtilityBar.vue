@@ -2,8 +2,14 @@
   <div class="utility-bar_wrapper">
     <div class="container">
       <div class="utility-bar">
-        <div class="section-name">
-          <div @click="goBackButton" class="go-back">Go Back</div>
+        <div class="go-back_button">
+          <div @click="goBackButton" class="go-back">
+            <IconBack />
+            Go Back
+          </div>
+        </div>
+        <div class="utility-bar__collection-name">
+          {{ collection }} <span v-if="product.name">/ {{ product.name }}</span>
         </div>
         <div class="utility-bar-call-to-action">
           <div class="utility-bar-icons">
@@ -129,8 +135,10 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useLogout from '@/composables/useLogout'
 import getUser from '@/composables/getUser'
+import IconBack from '@/components/UI/IconBack.vue'
 export default {
-  props: ['collection', 'addNewImage', 'deleteCollection'],
+  components: { IconBack },
+  props: ['collection', 'addNewImage', 'deleteCollection', 'product'],
   setup() {
     const { logout, isPending } = useLogout()
     const { user } = getUser()
@@ -176,17 +184,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 0;
-
   .section-name {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: auto;
+
     height: 100%;
     border-right: 1px solid #f2f3f8;
-
     h2 {
       font-size: 1.5rem;
       font-weight: 400;
@@ -197,7 +202,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    // gap: 1rem;
   }
 }
 .utility-bar-icons {
@@ -231,7 +235,11 @@ export default {
     box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   }
 }
-
+.utility-bar__collection-name {
+  padding-left: 2rem;
+  margin-right: auto;
+  font-weight: 600;
+}
 .utility-bar-call-to-action button {
   height: 32px;
   padding: 0 0.5rem;
@@ -251,9 +259,16 @@ button.delete-collection {
   }
 }
 .go-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  gap: 1rem;
 }
 .admin-call-to-action {
   font-family: 'Footura PT', sans-serif;
+}
+.go-back_button {
+  display: flex;
 }
 </style>
