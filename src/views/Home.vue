@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper
-      :slidesPerView="'1'"
+      :slidesPerView="slidePerView"
       :centeredSlides="true"
       :spaceBetween="0"
       :loop="true"
@@ -65,13 +65,15 @@ export default {
         img: 'img7.jpg'
       }
     ])
-    const s = ref(products)
-    console.log(s)
+    let intFrameWidth = window.innerWidth
+    const slidePerView = ref(intFrameWidth > 992 ? '1.5' : '1')
+
     return {
       modules: [Navigation],
       error,
       products,
-      homeList
+      homeList,
+      slidePerView
     }
   }
 }

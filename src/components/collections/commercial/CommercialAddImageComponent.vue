@@ -37,13 +37,12 @@ export default {
     const title = ref('')
     const selectedImage = ref(null)
     const fileError = ref(null)
-    const { updateDoc } = useDocument('products', props.product.id)
+    const { updateDoc } = useDocument('commercials', props.product.id)
     const { filePath, url, uploadImage } = useStorage(props.product.folderName)
 
     const types = ['image/png', 'image/jpeg']
     const handleChange = (e) => {
       let selected = e.target.files[0]
-      console.log(selected)
       //image preview
       let output = document.getElementById('image-preview')
       output.src = URL.createObjectURL(e.target.files[0])
@@ -102,7 +101,7 @@ export default {
 .image-preview {
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-image: url(../../assets/images/placeholder.png);
+  background-image: url(../../../assets/images/placeholder.png);
   background-size: 20%;
   background-repeat: no-repeat;
   background-position: center;

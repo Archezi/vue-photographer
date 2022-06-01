@@ -21,7 +21,6 @@
 
 <script>
 import Logo from '@/components/logo/Logo.vue'
-import { watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import IconClose from '@/components/UI/IconClose.vue'
@@ -36,18 +35,6 @@ export default {
   setup() {
     const router = useRouter()
     const navOpen = ref(false)
-    // const routePath = computed(() => {
-    //   return useRouter().currentRoute.value.path
-    // })
-    watch('$route', () => {
-      console.log('route changed')
-      // navOpen.value = false
-    })
-    console.log(useRouter().currentRoute.value.path)
-
-    // if (routePath.value !== '/navigation') {
-    //   navOpen.value = false
-    // }
     const openNavigation = () => {
       router.push('/navigation')
       navOpen.value = true
@@ -76,7 +63,6 @@ export default {
   width: 100vw;
   z-index: 60;
   background: #f8f8f8;
-
   &-container {
     grid-area: B;
     display: flex;
@@ -95,17 +81,21 @@ export default {
     margin-inline: auto;
     cursor: pointer;
   }
-  .logo {
-    // margin-right: auto;
-    max-height: 50px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 12.66fr 2fr;
   }
-  .name {
-    margin-inline: auto;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .navigation {
-    margin-left: auto;
-  }
+}
+
+.logo {
+  // margin-right: auto;
+  max-height: 50px;
+}
+.name {
+  margin-inline: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navigation {
+  margin-left: auto;
 }
 </style>

@@ -1,14 +1,13 @@
 <template>
   <div>
-    <utility-bar
+    <UtilityBar
       @create-collection="addNew = !addNew"
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
-    ></utility-bar>
+    />
     <div class="container">
-      <!-- <product-add-image ></product-add-image> -->
-      <ProductAddImageComponent v-if="addNew" :product="product" />
+      <FamiliesAddImageComponent v-if="addNew" :product="product" />
     </div>
     <div class="product-details__empty-container" v-if="!product.photos.length">
       <h3>No images yet</h3>
@@ -28,27 +27,26 @@ import useDocuemnt from '@/composables/useDocument'
 import useStorage from '@/composables/useStorage'
 import { ref } from 'vue'
 // components
-import ProductAddImageComponent from '../../components/collections/products/ProductAddImageComponent.vue'
+import FamiliesAddImageComponent from '../../components/collections/families/FamiliesAddImageComponent.vue'
 // swiper
 import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductAddImageComponent, SwiperComponent, UtilityBar },
+  components: { FamiliesAddImageComponent, SwiperComponent, UtilityBar },
   props: ['id'],
   setup(props) {
     const { user } = getUser()
-    const { error, document: product } = getDocument('products', props.id)
-    const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
+    const { error, document: product } = getDocument('families', props.id)
+    const { deleteDocument, updateDoc } = useDocuemnt('families', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
-    const collectionName = ref('details')
+    const collectionName = ref('Families Collection')
     const addNew = ref(false)
     const deleteCollection = ref(true)
     // Delete all collection
     const coniframtion = () => {
       if (window.confirm('Are you sure you want to delete this collection?')) {
         handleDelete()
-        router.push({ name: 'Products' })
       }
     }
     const handleDelete = async () => {
@@ -59,7 +57,7 @@ export default {
       })
       await deleteDocument()
       await deleteImage(coverPhoto)
-      router.push('/products')
+      router.push('/families')
     }
 
     // Delete single image

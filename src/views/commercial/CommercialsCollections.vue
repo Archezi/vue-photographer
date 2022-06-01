@@ -5,28 +5,32 @@
       :collection="collectionName"
     ></utility-bar>
     <div>
-      <product-create-collection v-if="addNew"></product-create-collection>
+      <CommercialCreateCollectionComponent v-if="addNew" />
     </div>
     <div class="product-collection_content container">
-      <products-list :products="products"></products-list>
+      <CommercialListComponent :collectionList="collectionList" />
     </div>
   </div>
 </template>
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import ProductCreateCollection from '../../components/product/ProductCreateCollection.vue'
 import getCollection from '@/composables/getCollection'
-import ProductsList from '../../components/product/ProductsList.vue'
+import CommercialListComponent from '../../components/collections/commercial/CommercialListComponent.vue'
+import CommercialCreateCollectionComponent from '../../components/collections/commercial/CommercialCreateCollectionComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductCreateCollection, ProductsList, UtilityBar },
+  components: {
+    CommercialListComponent,
+    CommercialCreateCollectionComponent,
+    UtilityBar
+  },
   setup() {
-    const { error, documents: products } = getCollection('commercial')
+    const { error, documents: collectionList } = getCollection('commercials')
     let addNew = ref(false)
-    const collectionName = ref('Products Collection')
+    const collectionName = ref('Wedding Collection')
     const { user } = getUser()
-    return { user, addNew, products, error, collectionName }
+    return { user, addNew, collectionList, error, collectionName }
   }
 }
 </script>

@@ -63,8 +63,6 @@ export default {
     SwiperSlide
   },
   setup() {
-    const { error, documents: products } = getCollection('products')
-    const sliderIndex = ref(null)
     const navigationList = reactive([
       {
         name: 'Home',
@@ -83,12 +81,12 @@ export default {
       },
       {
         name: 'Family Photos',
-        path: '/family',
+        path: '/families',
         image: 'children.jpg'
       },
       {
         name: 'Portraits',
-        path: '/commercial',
+        path: '/portraits',
         image: 'outdoor.jpg'
       },
 
@@ -103,6 +101,8 @@ export default {
         image: 'about.jpg'
       }
     ])
+    const { error, documents: products } = getCollection('products')
+    const sliderIndex = ref(null)
     const navigationIndex = ref(null)
     const onSlideChange = (swiper) => {
       navigationIndex.value = swiper.activeIndex
@@ -136,7 +136,11 @@ export default {
   grid-template-areas: 'A B C';
   position: relative;
   background: #f8f8f8;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 0fr 1fr 0fr;
+  }
 }
+
 .swiper {
   width: 100%;
   .swiper-pagination {
@@ -165,30 +169,9 @@ export default {
   height: 100%;
   object-fit: cover;
   transition: all 0.5s ease-in-out;
-  // filter: blur(2px);
 }
 .swiper-slide-active img {
   opacity: 1;
-  // filter: blur(0px);
-}
-.swiper-pagination {
-  top: 20px;
-}
-.swiper-pagination-bullet {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-  color: red;
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.2);
-  bottom: 120px;
-}
-
-.swiper-pagination-bullet-active {
-  color: #fff;
-  background: #007aff;
 }
 .swiper-slide {
   width: 60%;
@@ -236,6 +219,11 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  @media screen and (max-width: 768px) {
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+  }
   a {
     &:hover {
       color: red;
@@ -253,6 +241,12 @@ export default {
   line-height: 1.2;
   letter-spacing: 1.4px;
   color: blue;
+  @media screen and (max-width: 768px) {
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+    font-weight: 400;
+  }
 }
 .navigation-text {
   display: flex;
@@ -260,6 +254,11 @@ export default {
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  @media screen and (max-width: 768px) {
+    gap: 0.1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+  }
 }
 .active h2 {
   text-decoration: underline !important;
@@ -267,5 +266,8 @@ export default {
 .navigation__index {
   transform: rotate(-90deg);
   text-decoration: none;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 </style>

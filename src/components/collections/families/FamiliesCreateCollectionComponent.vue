@@ -31,8 +31,8 @@ import { timestamp } from '@/firebase/config'
 import { useRouter } from 'vue-router'
 export default {
   setup() {
-    const { filePath, url, uploadImage } = useStorage('products')
-    const { addDoc, error } = useCollection('products')
+    const { filePath, url, uploadImage } = useStorage('families')
+    const { addDoc, error } = useCollection('families')
     const { user } = getUser()
     const collectionName = ref('')
     const file = ref(null)
@@ -43,7 +43,7 @@ export default {
       if (file.value) {
         await uploadImage(file.value, collectionName.value)
         const res = await addDoc({
-          folderName: 'products',
+          folderName: 'families',
           name: collectionName.value,
           userId: user.value.uid,
           imageUrl: url.value,
@@ -54,7 +54,7 @@ export default {
 
         if (!error.value) {
           console.log('playlist added')
-          router.push({ name: 'Product', params: { id: res.id } })
+          router.push({ name: 'Family', params: { id: res.id } })
         }
       }
     }
@@ -118,7 +118,7 @@ h4.collection-name {
 .image-preview {
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-image: url(../../assets/images/placeholder.png);
+  background-image: url(../../../assets/images/placeholder.png);
   background-size: 20%;
   background-repeat: no-repeat;
   background-position: center;

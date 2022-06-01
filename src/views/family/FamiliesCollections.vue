@@ -1,34 +1,35 @@
 <template>
   <div>
-    <UtilityBar
+    <utility-bar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
-    />
+    ></utility-bar>
     <div>
-      <ProductCreateCollectionComponent v-if="addNew" />
+      <FamiliesCreateCollectionComponent v-if="addNew" />
     </div>
     <div class="product-collection_content container">
-      <ProductListComponent :collectionList="collectionList" />
+      <FamiliesListComponent :collectionList="collectionList" />
     </div>
   </div>
 </template>
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import ProductCreateCollectionComponent from '../../components/collections/products/ProductCreateCollectionComponent.vue'
 import getCollection from '@/composables/getCollection'
-import ProductListComponent from '../../components/collections/products/ProductListComponent.vue'
+// Components
+import FamiliesCreateCollectionComponent from '../../components/collections/families/FamiliesCreateCollectionComponent.vue'
+import FamiliesListComponent from '../../components/collections/families/FamiliesListComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
-    ProductCreateCollectionComponent,
-    ProductListComponent,
+    FamiliesCreateCollectionComponent,
+    FamiliesListComponent,
     UtilityBar
   },
   setup() {
-    const { error, documents: collectionList } = getCollection('products')
+    const { error, documents: collectionList } = getCollection('families')
     let addNew = ref(false)
-    const collectionName = ref('Products Collection')
+    const collectionName = ref('Wedding Collection')
     const { user } = getUser()
     return { user, addNew, collectionList, error, collectionName }
   }

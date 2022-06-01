@@ -28,14 +28,31 @@ const routes = [
     component: () => import('../views/auth/Login.vue')
   },
   {
-    path: '/family',
+    path: '/navigation',
+    name: 'Navigation',
+    component: () => import('../views/navigation/Navigation.vue')
+  },
+  {
+    path: '/families',
+    name: 'Families',
+    component: () => import('../views/family/FamiliesCollections.vue')
+  },
+  {
+    path: '/families/:id',
     name: 'Family',
-    component: () => import('../views/family/Family.vue')
+    props: true,
+    component: () => import('../views/family/FamilyDetails.vue')
   },
   {
     path: '/portraits',
     name: 'Portraits',
-    component: () => import('../views/portraits/Portraits.vue')
+    component: () => import('../views/portraits/PortraitsCollections.vue')
+  },
+  {
+    path: '/portraits/:id',
+    name: 'Portrait',
+    props: true,
+    component: () => import('../views/portraits/PortraitDetails.vue')
   },
   {
     path: '/weddings',
@@ -53,15 +70,17 @@ const routes = [
     name: 'About',
     component: () => import('../views/about/About.vue')
   },
-  {
-    path: '/navigation',
-    name: 'Navigation',
-    component: () => import('../views/navigation/Navigation.vue')
-  },
+
   {
     path: '/commercial',
+    name: 'Commercials',
+    component: () => import('../views/commercial/CommercialsCollections.vue')
+  },
+  {
+    path: '/commercial/:id',
     name: 'Commercial',
-    component: () => import('../views/commercial/Commercial.vue')
+    props: true,
+    component: () => import('../views/commercial/CommercialDetails.vue')
   },
   {
     path: '/products',
