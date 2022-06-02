@@ -238,7 +238,7 @@ export default {
 .utility-bar__collection-name {
   padding-left: 2rem;
   margin-right: auto;
-  font-weight: 600;
+  font-weight: 400;
 }
 .utility-bar-call-to-action button {
   height: 32px;

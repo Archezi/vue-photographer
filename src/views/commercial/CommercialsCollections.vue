@@ -3,7 +3,7 @@
     <utility-bar
       @create-collection="addNew = !addNew"
       :collection="collectionName"
-      :product="collectionList"
+      
     ></utility-bar>
     <div>
       <CommercialCreateCollectionComponent v-if="addNew" />
