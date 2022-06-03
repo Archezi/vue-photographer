@@ -4,8 +4,8 @@ import router from './router'
 import store from './store'
 // import { projectAuth } from './firebase/config'
 import './styles/_shared.scss'
-import TheHeader from './components/UI/TheHeader.vue'
-import TheFooter from './components/UI/TheFooter.vue'
+import TheHeader from './components/layout/TheHeader.vue'
+import TheFooter from './components/layout/TheFooter.vue'
 let app = createApp(App)
 
 app.component('the-header', TheHeader)

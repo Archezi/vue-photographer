@@ -164,7 +164,6 @@ export default {
     }
     const toggleAddNewCollection = () => {
       addNewCollection.value = !addNewCollection.value
-      // console.log('add new collection', addNewCollection.value)
     }
     const handleSliderView = () => {
       store.commit('toggleSliderView')
