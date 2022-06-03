@@ -9,11 +9,15 @@
           </div>
         </div>
         <div class="utility-bar__collection-name">
-          {{ collection }} <span v-if="product.name">/ {{ product.name }}</span>
+          {{ collection }}
         </div>
         <div class="utility-bar-call-to-action">
           <div class="utility-bar-icons">
-            <div class="slider-icon active">
+            <div
+              @click="handleSliderView"
+              class="slider-icon"
+              :class="{ active: store.state.sliderView }"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24.227"
@@ -37,7 +41,11 @@
                 </g>
               </svg>
             </div>
-            <div class="grid-icon">
+            <div
+              @click="handleGridView"
+              class="grid-icon"
+              :class="{ active: store.state.gridView }"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="19.581"
@@ -133,6 +141,7 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import useLogout from '@/composables/useLogout'
 import getUser from '@/composables/getUser'
 import IconBack from '@/components/UI/IconBack.vue'
@@ -144,6 +153,7 @@ export default {
     const { user } = getUser()
     const router = useRouter()
     const addNewCollection = ref(false)
+    const store = useStore()
     const goBackButton = () => {
       router.back()
     }
@@ -154,16 +164,25 @@ export default {
     }
     const toggleAddNewCollection = () => {
       addNewCollection.value = !addNewCollection.value
-      console.log('add new collection', addNewCollection.value)
+      // console.log('add new collection', addNewCollection.value)
+    }
+    const handleSliderView = () => {
+      store.commit('toggleSliderView')
+    }
+    const handleGridView = () => {
+      store.commit('toggleGridView')
     }
     return {
-      toggleAddNewCollection,
-      addNewCollection,
-      handleLogout,
+      store,
       logout,
       user,
       isPending,
-      goBackButton
+      addNewCollection,
+      toggleAddNewCollection,
+      handleLogout,
+      goBackButton,
+      handleSliderView,
+      handleGridView
     }
   }
 }
@@ -239,6 +258,8 @@ export default {
   padding-left: 2rem;
   margin-right: auto;
   font-weight: 400;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 .utility-bar-call-to-action button {
   height: 32px;

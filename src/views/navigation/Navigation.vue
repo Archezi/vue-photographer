@@ -30,6 +30,7 @@
         v-for="(nav, index) in navigationList"
         :key="nav.name"
         :to="nav.path"
+        @click="navigationIconChange"
         class="slider__navigation-link"
         :class="{ active: index == navigationIndex }"
       >
@@ -46,6 +47,8 @@
 </template>
 <script>
 // Import Swiper Vue.js components
+import { useStore } from 'vuex'
+import { onMounted, onUnmounted } from 'vue'
 import { Swiper } from 'swiper/vue/swiper'
 import { SwiperSlide } from 'swiper/vue/swiper-slide'
 // Import Swiper styles
@@ -63,6 +66,12 @@ export default {
     SwiperSlide
   },
   setup() {
+    onMounted(() => {
+      store.state.navOpen = true
+    })
+    onUnmounted(() => {
+      store.state.navOpen = false
+    })
     const navigationList = reactive([
       {
         name: 'Home',
@@ -101,24 +110,25 @@ export default {
         image: 'about.jpg'
       }
     ])
+
+    const store = useStore()
     const { error, documents: products } = getCollection('products')
     const sliderIndex = ref(null)
     let intFrameWidth = window.innerWidth
     const slidePerView = ref(intFrameWidth > 992 ? '1.35' : '1')
     const navigationIndex = ref(null)
+
     const onSlideChange = (swiper) => {
       navigationIndex.value = swiper.activeIndex
     }
+
     const onSwiper = (swiper) => {
       console.log(swiper.activeIndex)
     }
-
+    const navigationIconChange = () => {
+      store.commit('toggleNav')
+    }
     return {
-      pagination: {
-        renderBullet: function (index, className) {
-          return '<span class="' + className + '">' + (index + 1) + '</span>'
-        }
-      },
       modules: [Navigation],
       error,
       products,
@@ -127,7 +137,8 @@ export default {
       navigationIndex,
       onSlideChange,
       onSwiper,
-      slidePerView
+      slidePerView,
+      navigationIconChange
     }
   }
 }
@@ -143,7 +154,6 @@ export default {
     grid-template-columns: 0fr 1fr 0fr;
   }
 }
-
 .swiper {
   width: 100%;
   .swiper-pagination {
@@ -162,7 +172,6 @@ export default {
 }
 .swiper-slide a {
   width: 100%;
-  // height: 100%;
 }
 .swiper-slide img {
   padding: 3rem;

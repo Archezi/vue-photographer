@@ -13,7 +13,7 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(slide, index) in homeList" :key="index">
-        <router-link to="./navigation">
+        <router-link @click="navigationIconChange" to="./navigation">
           <!-- <img :src="slide.img" alt="" /> -->
           <img :src="require(`@/assets/mainPage/${slide.img}`)" />
         </router-link>
@@ -23,6 +23,7 @@
 </template>
 <script>
 import { reactive } from 'vue'
+import { useStore } from 'vuex'
 // Import Swiper Vue.js components
 import { Swiper } from 'swiper/vue/swiper'
 import { SwiperSlide } from 'swiper/vue/swiper-slide'
@@ -41,6 +42,7 @@ export default {
     SwiperSlide
   },
   setup() {
+    const store = useStore()
     const { error, documents: products } = getCollection('products')
     const homeList = reactive([
       {
@@ -68,13 +70,16 @@ export default {
     ])
     let intFrameWidth = window.innerWidth
     const slidePerView = ref(intFrameWidth > 992 ? '1.5' : '1')
-
+    const navigationIconChange = () => {
+      store.state.openNav = true
+    }
     return {
       modules: [Navigation],
       error,
       products,
       homeList,
-      slidePerView
+      slidePerView,
+      navigationIconChange
     }
   }
 }

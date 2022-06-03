@@ -2,7 +2,6 @@
   <header class="header">
     <div class="container header-container">
       <Logo class="logo" />
-      <!-- <navigation class="navigation"></navigation> -->
     </div>
     <div
       @click="openNavigation"
@@ -20,9 +19,11 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 import Logo from '@/components/logo/Logo.vue'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import IconClose from '@/components/UI/IconClose.vue'
 import IconMenu from '@/components/UI/IconMenu.vue'
 export default {
@@ -33,15 +34,21 @@ export default {
   },
 
   setup() {
+    const store = useStore()
     const router = useRouter()
-    const navOpen = ref(false)
+    // const nav = ref(false)
+    const navOpen = computed(() => {
+      return store.state.navOpen
+    })
+
     const openNavigation = () => {
       router.push('/navigation')
-      navOpen.value = true
+      store.state.navOpen = true
     }
+
     const closeNavigation = () => {
       router.back()
-      navOpen.value = false
+      store.state.navOpen = false
     }
     return { openNavigation, closeNavigation, navOpen }
   }

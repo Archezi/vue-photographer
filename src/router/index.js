@@ -70,7 +70,6 @@ const routes = [
     name: 'About',
     component: () => import('../views/about/About.vue')
   },
-
   {
     path: '/commercial',
     name: 'Commercials',

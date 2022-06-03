@@ -15,12 +15,21 @@
       <button @click="addNew = !addNew">Add new image</button>
     </div>
     <div v-if="product.photos.length" class="slider-content">
-      <SwiperComponent :slider="product.photos" :numberOfSlides="1" />
+      <SwiperDetailsComponent
+        v-if="store.state.sliderView"
+        :slider="product.photos"
+        :numberOfSlides="1"
+      />
+
+      <div v-if="store.state.gridView" class="grid-view__container container">
+        <grid-view :images="product.photos"></grid-view>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import getDocument from '@/composables/getDocument'
 import getUser from '@/composables/getUser'
 import useDocuemnt from '@/composables/useDocument'
@@ -28,11 +37,17 @@ import useStorage from '@/composables/useStorage'
 import { ref } from 'vue'
 // components
 import ProductAddImageComponent from '../../components/collections/products/ProductAddImageComponent.vue'
+import GridView from '../../components/UI/GridView.vue'
 // swiper
-import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
+import SwiperDetailsComponent from '../../components/swiper/SwiperDetailsComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
-  components: { ProductAddImageComponent, SwiperComponent, UtilityBar },
+  components: {
+    ProductAddImageComponent,
+    SwiperDetailsComponent,
+    UtilityBar,
+    GridView
+  },
   props: ['id'],
   setup(props) {
     const { user } = getUser()
@@ -40,6 +55,7 @@ export default {
     const { deleteDocument, updateDoc } = useDocuemnt('products', props.id)
     const { deleteImage } = useStorage()
     const router = useRouter()
+    const store = useStore()
     const addNew = ref(false)
     const deleteCollection = ref(true)
     const collectionName = ref('Products Collection')
@@ -76,7 +92,8 @@ export default {
       coniframtion,
       collectionName,
       addNew,
-      deleteCollection
+      deleteCollection,
+      store
     }
   }
 }
@@ -153,5 +170,9 @@ export default {
     font-size: 1.5rem;
     font-weight: 300;
   }
+}
+.grid-view__container {
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
 }
 </style>
