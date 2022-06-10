@@ -1,7 +1,7 @@
 <template>
   <div>
     <UtilityBar
-      @create-collection="addNew = !addNew"
+      @add-new-image="addNew = !addNew"
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
