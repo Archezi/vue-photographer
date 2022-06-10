@@ -1,20 +1,28 @@
 <template>
   <div>
     <UtilityBar
-      @add-new-image="addNew = !addNew"
+      @add-new="addNew = !addNew"
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
       :product="product"
     />
     <div class="container">
-      <WeddingAddImageComponent v-if="addNew" :product="product" />
+      <!-- <WeddingAddImageComponent v-if="addNew" :product="product" /> -->
+      <AddImageComponent
+        v-if="addNew"
+        :product="product"
+        :collection="'weddings'"
+      />
     </div>
-    <div class="product-details__empty-container" v-if="!product.photos.length">
+    <div
+      class="product-details__empty-container"
+      v-if="product.photos.length === 0"
+    >
       <h3>No images yet</h3>
       <button @click="addNew = !addNew">Add new image</button>
     </div>
-    <div v-if="product.photos.length" class="slider-content">
+    <div v-if="product.photos.length > 0" class="slider-content">
       <SwiperComponent
         v-if="store.state.sliderView"
         :slider="product.photos"
@@ -23,7 +31,9 @@
       <div v-if="store.state.gridView" class="grid-view__container container">
         <grid-view
           :images="product.photos"
-          @delete-single-image="handleDeleteImage"
+          :collectionName="'weddings'"
+          :id="id"
+          @delete-single-image="handleDeleteImage(product.photos.id)"
         ></grid-view>
       </div>
     </div>
@@ -40,14 +50,16 @@ import getUser from '@/composables/getUser'
 import useDocuemnt from '@/composables/useDocument'
 import useStorage from '@/composables/useStorage'
 // components
-import WeddingAddImageComponent from '../../components/collections/weddings/WeddingAddImageComponent.vue'
+import AddImageComponent from '../../components/addImage/AddImageComponent.vue'
+// import WeddingAddImageComponent from '../../components/collections/weddings/WeddingAddImageComponent.vue'
 import GridView from '../../components/UI/GridView.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 // swiper
 import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
 export default {
   components: {
-    WeddingAddImageComponent,
+    // WeddingAddImageComponent,
+    AddImageComponent,
     SwiperComponent,
     UtilityBar,
     GridView
@@ -69,7 +81,7 @@ export default {
         handleDelete()
       }
     }
-    console.log(product.photos)
+    // console.log(product.value.photos)
     const handleDelete = async () => {
       let coverPhoto = product.value.filePath
       let photosCollection = product.value.photos

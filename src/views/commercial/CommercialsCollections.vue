@@ -1,9 +1,8 @@
 <template>
   <div>
     <utility-bar
-      @create-collection="addNew = !addNew"
+      @add-new="addNew = !addNew"
       :collection="collectionName"
-      
     ></utility-bar>
     <div>
       <CommercialCreateCollectionComponent v-if="addNew" />

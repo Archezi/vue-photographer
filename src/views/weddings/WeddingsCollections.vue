@@ -1,7 +1,7 @@
 <template>
   <div>
     <utility-bar
-      @create-collection="addNew = !addNew"
+      @add-new="addNew = !addNew"
       :collection="collectionName"
       :product="collectionList"
     ></utility-bar>

@@ -110,19 +110,17 @@
           <div class="admin-call-to-action" v-if="user">
             <button
               v-if="!addNewCollection"
-              @click="$emit('createCollection'), toggleAddNewCollection()"
+              @click="$emit('addNew'), toggleAddNewCollection()"
             >
               Add New
             </button>
             <button
               v-if="addNewCollection"
-              @click="$emit('createCollection'), toggleAddNewCollection()"
+              @click="$emit('addNew'), toggleAddNewCollection()"
             >
               Close
             </button>
-            <button @click="$emit('addNewImage')" v-if="addNewImage">
-              Add New Image
-            </button>
+
             <button
               class="delete-collection"
               v-if="deleteCollection"

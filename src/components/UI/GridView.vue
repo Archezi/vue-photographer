@@ -1,7 +1,7 @@
 <template>
   <div class="grid-view">
     <div v-for="img in images" :key="img.id" class="grid-item">
-      <div @click="$emit('deleteSingleImage')" class="delete-image" v-if="user">
+      <div @click="handleDeleteImage(img.id)" class="delete-image" v-if="user">
         X
       </div>
       <img :src="img.url" />
@@ -10,13 +10,30 @@
 </template>
 
 <script>
+// Firebase
+import getDocument from '@/composables/getDocument'
 import getUser from '@/composables/getUser'
+import useDocuemnt from '@/composables/useDocument'
+import useStorage from '@/composables/useStorage'
 export default {
-  props: ['images'],
-  setup() {
+  props: ['images', 'collectionName', 'id'],
+  setup(props) {
     const { user } = getUser()
+    const { error, document: product } = getDocument(
+      props.collectionName,
+      props.id
+    )
+    const { updateDoc } = useDocuemnt(props.collectionName, props.id)
+    const { deleteImage } = useStorage()
 
-    return { user }
+    const handleDeleteImage = async (id) => {
+      const photos = product.value.photos.filter((photo) => photo.id !== id)
+      console.log(photos)
+      const photo = product.value.photos.find((ph) => ph.id === id)
+      await deleteImage(photo.filePath)
+      await updateDoc({ photos })
+    }
+    return { user, handleDeleteImage, product, error }
   }
 }
 </script>

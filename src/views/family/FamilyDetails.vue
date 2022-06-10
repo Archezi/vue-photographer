@@ -1,7 +1,7 @@
 <template>
   <div>
     <UtilityBar
-      @create-collection="addNew = !addNew"
+      @add-new="addNew = !addNew"
       @delete-collection="coniframtion"
       :collection="collectionName"
       :deleteCollection="deleteCollection"
@@ -21,7 +21,12 @@
         :numberOfSlides="1"
       />
       <div v-if="store.state.gridView" class="grid-view__container container">
-        <grid-view :images="product.photos"></grid-view>
+        <grid-view
+          :images="product.photos"
+          :collectionName="'families'"
+          :id="id"
+          @delete-single-image="handleDeleteImage(product.photos.id)"
+        ></grid-view>
       </div>
     </div>
   </div>
