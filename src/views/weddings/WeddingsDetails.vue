@@ -21,7 +21,10 @@
         :numberOfSlides="1"
       />
       <div v-if="store.state.gridView" class="grid-view__container container">
-        <grid-view :images="product.photos"></grid-view>
+        <grid-view
+          :images="product.photos"
+          @delete-single-image="handleDeleteImage"
+        ></grid-view>
       </div>
     </div>
   </div>
@@ -66,6 +69,7 @@ export default {
         handleDelete()
       }
     }
+    console.log(product.photos)
     const handleDelete = async () => {
       let coverPhoto = product.value.filePath
       let photosCollection = product.value.photos
@@ -79,6 +83,7 @@ export default {
     // Delete single image
     const handleDeleteImage = async (id) => {
       const photos = product.value.photos.filter((photo) => photo.id !== id)
+      console.log(photos)
       const photo = product.value.photos.find((ph) => ph.id === id)
       await deleteImage(photo.filePath)
       await updateDoc({ photos })
