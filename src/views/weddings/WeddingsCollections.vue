@@ -10,7 +10,6 @@
       <CreateCollectionComponent
         v-if="addNew"
         :createCollectionName="'weddings'"
-        :pathName="'Weddings'"
       />
     </div>
     <div class="product-collection_content container">

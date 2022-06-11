@@ -6,7 +6,10 @@
       :product="collectionList"
     ></utility-bar>
     <div>
-      <FamiliesCreateCollectionComponent v-if="addNew" />
+      <CreateCollectionComponent
+        v-if="addNew"
+        :createCollectionName="'families'"
+      />
     </div>
     <div class="product-collection_content container">
       <FamiliesListComponent :collectionList="collectionList" />
@@ -18,12 +21,12 @@ import { ref } from 'vue'
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 // Components
-import FamiliesCreateCollectionComponent from '../../components/collections/families/FamiliesCreateCollectionComponent.vue'
+import CreateCollectionComponent from '../../components/createCollection/CreateCollectionComponent.vue'
 import FamiliesListComponent from '../../components/collections/families/FamiliesListComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
-    FamiliesCreateCollectionComponent,
+    CreateCollectionComponent,
     FamiliesListComponent,
     UtilityBar
   },

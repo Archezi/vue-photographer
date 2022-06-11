@@ -3,9 +3,13 @@
     <utility-bar
       @add-new="addNew = !addNew"
       :collection="collectionName"
+      :product="collectionList"
     ></utility-bar>
     <div>
-      <CommercialCreateCollectionComponent v-if="addNew" />
+      <CreateCollectionComponent
+        v-if="addNew"
+        :createCollectionName="'commercials'"
+      />
     </div>
     <div class="product-collection_content container">
       <CommercialListComponent :collectionList="collectionList" />
@@ -17,12 +21,12 @@ import { ref } from 'vue'
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 import CommercialListComponent from '../../components/collections/commercial/CommercialListComponent.vue'
-import CommercialCreateCollectionComponent from '../../components/collections/commercial/CommercialCreateCollectionComponent.vue'
+import CreateCollectionComponent from '../../components/createCollection/CreateCollectionComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
+    CreateCollectionComponent,
     CommercialListComponent,
-    CommercialCreateCollectionComponent,
     UtilityBar
   },
   setup() {

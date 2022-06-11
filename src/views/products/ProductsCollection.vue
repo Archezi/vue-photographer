@@ -6,7 +6,10 @@
       :product="collectionList"
     />
     <div>
-      <ProductCreateCollectionComponent v-if="addNew" />
+      <CreateCollectionComponent
+        v-if="addNew"
+        :createCollectionName="'products'"
+      />
     </div>
     <div class="product-collection_content container">
       <ProductListComponent :collectionList="collectionList" />
@@ -16,15 +19,15 @@
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import ProductCreateCollectionComponent from '../../components/collections/products/ProductCreateCollectionComponent.vue'
 import getCollection from '@/composables/getCollection'
+import CreateCollectionComponent from '../../components/createCollection/CreateCollectionComponent.vue'
 import ProductListComponent from '../../components/collections/products/ProductListComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
-    ProductCreateCollectionComponent,
     ProductListComponent,
-    UtilityBar
+    UtilityBar,
+    CreateCollectionComponent
   },
   setup() {
     const { error, documents: collectionList } = getCollection('products')
