@@ -8,7 +8,11 @@
       :product="product"
     ></utility-bar>
     <div class="container">
-      <ProductAddImageComponent v-if="addNew" :product="product" />
+      <AddImageComponent
+        v-if="addNew"
+        :product="product"
+        :collection="'products'"
+      />
     </div>
     <div class="product-details__empty-container" v-if="!product.photos.length">
       <h3>No images yet</h3>
@@ -43,12 +47,12 @@ import useStorage from '@/composables/useStorage'
 // components
 import GridView from '../../components/UI/GridView.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
-import ProductAddImageComponent from '../../components/collections/products/ProductAddImageComponent.vue'
+import AddImageComponent from '../../components/addImage/AddImageComponent.vue'
 // swiper
 import SwiperDetailsComponent from '../../components/swiper/SwiperDetailsComponent.vue'
 export default {
   components: {
-    ProductAddImageComponent,
+    AddImageComponent,
     SwiperDetailsComponent,
     UtilityBar,
     GridView

@@ -8,7 +8,6 @@
       :product="product"
     />
     <div class="container">
-      <!-- <WeddingAddImageComponent v-if="addNew" :product="product" /> -->
       <AddImageComponent
         v-if="addNew"
         :product="product"
@@ -51,14 +50,12 @@ import useDocuemnt from '@/composables/useDocument'
 import useStorage from '@/composables/useStorage'
 // components
 import AddImageComponent from '../../components/addImage/AddImageComponent.vue'
-// import WeddingAddImageComponent from '../../components/collections/weddings/WeddingAddImageComponent.vue'
 import GridView from '../../components/UI/GridView.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 // swiper
 import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
 export default {
   components: {
-    // WeddingAddImageComponent,
     AddImageComponent,
     SwiperComponent,
     UtilityBar,
