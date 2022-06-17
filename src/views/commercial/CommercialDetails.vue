@@ -11,7 +11,7 @@
       <AddImageComponent
         v-if="addNew"
         :product="product"
-        :collection="'weddings'"
+        :collection="'commercials'"
       />
     </div>
     <div class="product-details__empty-container" v-if="!product.photos.length">
