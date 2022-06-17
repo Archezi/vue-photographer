@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="wrapper">
-      <h4 class="collection-name">Collection Name</h4>
-      <div class="form-container">
+      <h4 class="collection-name">Collection {{ collectionNameDisplay }}</h4>
+      <div class="add-collection-container">
         <div class="image-preview">
           <img id="image-preview" />
         </div>
         <div class="form-wrapper">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="handleSubmit" class="add-collection-form">
             <h4>Add new collection</h4>
             <input type="text" placeholder="Title" v-model="collectionName" />
 
@@ -30,20 +30,26 @@ import getUser from '@/composables/getUser'
 import { timestamp } from '@/firebase/config'
 import { useRouter } from 'vue-router'
 export default {
-  setup() {
-    const { filePath, url, uploadImage } = useStorage('products')
-    const { addDoc, error } = useCollection('products')
+  props: ['createCollectionName', 'pathName'],
+  setup(props) {
+    const { filePath, url, uploadImage } = useStorage(
+      props.createCollectionName
+    )
+    const { addDoc, error } = useCollection(props.createCollectionName)
     const { user } = getUser()
     const collectionName = ref('')
     const file = ref(null)
     const fileError = ref(null)
     const router = useRouter()
 
+    const ucfirst = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+    const collectionNameDisplay = ref(ucfirst(props.createCollectionName))
+
     const handleSubmit = async () => {
       if (file.value) {
         await uploadImage(file.value, collectionName.value)
         const res = await addDoc({
-          folderName: 'products',
+          folderName: props.createCollectionName,
           name: collectionName.value,
           userId: user.value.uid,
           imageUrl: url.value,
@@ -54,7 +60,11 @@ export default {
 
         if (!error.value) {
           console.log('playlist added')
-          router.push({ name: 'Product', params: { id: res.id } })
+          console.log(res)
+          router.push({
+            name: `${props.pathName}`,
+            params: { id: res.id }
+          })
         }
       }
     }
@@ -84,7 +94,8 @@ export default {
       collectionName,
       handleSubmit,
       fileError,
-      handleChange
+      handleChange,
+      collectionNameDisplay
     }
   }
 }
@@ -93,13 +104,12 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   max-width: 100%;
-  margin: 0 auto;
   width: 100%;
+  margin: 0 auto;
   max-height: 500px;
-  height: 100%;
   background: #fff;
   border-radius: 5px;
-  padding: 2rem 3.125rem;
+  padding: 2rem 0;
   box-sizing: border-box;
 }
 h4.collection-name {
@@ -108,12 +118,22 @@ h4.collection-name {
   font-weight: 700;
   margin-bottom: 1rem;
 }
-.form-container {
+.add-collection-container {
   display: grid;
   padding: 1rem;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 400px;
+  max-height: 400px;
   gap: 1rem;
   box-sizing: content-box;
+}
+.add-collection-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  button.create-btn {
+    margin-top: auto;
+  }
 }
 .image-preview {
   border: 1px solid #ccc;
@@ -122,12 +142,13 @@ h4.collection-name {
   background-size: 20%;
   background-repeat: no-repeat;
   background-position: center;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 .create-btn {

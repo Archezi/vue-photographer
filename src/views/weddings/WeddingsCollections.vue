@@ -6,27 +6,27 @@
       :product="collectionList"
     ></utility-bar>
     <div>
-      <CreateCollectionComponent
+      <ProductCreateCollectionComponent
         v-if="addNew"
         :createCollectionName="'weddings'"
       />
     </div>
     <div class="product-collection_content container">
-      <WeddingListComponent :collectionList="collectionList" />
+      <ProductsListComponent :collectionList="collectionList" />
     </div>
   </div>
 </template>
 <script>
 import { ref } from 'vue'
 import getUser from '@/composables/getUser'
-import CreateCollectionComponent from '../../components/createCollection/CreateCollectionComponent.vue'
+import ProductCreateCollectionComponent from '../../components/product/ProductCreateCollectionComponent.vue'
 import getCollection from '@/composables/getCollection'
-import WeddingListComponent from '../../components/collections/weddings/WeddingListComponent.vue'
+import ProductsListComponent from '../../components/product/ProductsListComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
-    CreateCollectionComponent,
-    WeddingListComponent,
+    ProductCreateCollectionComponent,
+    ProductsListComponent,
     UtilityBar
   },
   setup() {

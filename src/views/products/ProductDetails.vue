@@ -8,7 +8,7 @@
       :product="product"
     ></utility-bar>
     <div class="container">
-      <AddImageComponent
+      <ProductAddImageComponent
         v-if="addNew"
         :product="product"
         :collection="'products'"
@@ -47,12 +47,12 @@ import useStorage from '@/composables/useStorage'
 // components
 import GridView from '../../components/UI/GridView.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
-import AddImageComponent from '../../components/addImage/AddImageComponent.vue'
+import ProductAddImageComponent from '../../components/product/ProductAddImageComponent.vue'
 // swiper
 import SwiperDetailsComponent from '../../components/swiper/SwiperDetailsComponent.vue'
 export default {
   components: {
-    AddImageComponent,
+    ProductAddImageComponent,
     SwiperDetailsComponent,
     UtilityBar,
     GridView

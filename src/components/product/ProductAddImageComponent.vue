@@ -1,9 +1,9 @@
 <template>
-  <div class="form-container">
+  <div class="add-image-conatainer">
     <div class="image-preview">
       <img id="image-preview" />
     </div>
-    <div class="form-wrapper">
+    <div class="add-image-form-wrapper">
       <form @submit.prevent="handleSubmit">
         <div class="add-image-to">
           <span
@@ -31,19 +31,18 @@ import { ref } from 'vue'
 import useDocument from '@/composables/useDocument'
 import useStorage from '@/composables/useStorage'
 export default {
-  props: ['product'],
+  props: ['product', 'collection'],
   setup(props) {
     const file = ref(null)
     const title = ref('')
     const selectedImage = ref(null)
     const fileError = ref(null)
-    const { updateDoc } = useDocument('products', props.product.id)
+    const { updateDoc } = useDocument(props.collection, props.product.id)
     const { filePath, url, uploadImage } = useStorage(props.product.folderName)
 
     const types = ['image/png', 'image/jpeg']
     const handleChange = (e) => {
       let selected = e.target.files[0]
-      console.log(selected)
       //image preview
       let output = document.getElementById('image-preview')
       output.src = URL.createObjectURL(e.target.files[0])
@@ -90,15 +89,21 @@ export default {
   gap: 1rem;
   margin-bottom: 20px;
 }
-.form-container {
+.add-image-conatainer {
   display: grid;
-  padding: 1rem 0;
+  padding: 2rem 0;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 400px;
   gap: 1rem;
   box-sizing: content-box;
-  height: 100%;
+  max-height: 400px;
 }
-
+.add-image-form-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .image-preview {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -107,12 +112,13 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   max-width: 100%;
+  width: 100%;
   max-height: 500px;
+  height: 100%;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    overflow: hidden;
+    object-fit: contain;
   }
 }
 .create-btn {

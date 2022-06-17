@@ -1,13 +1,19 @@
 <template>
-  <div class="product-collection" v-for="product in products" :key="product.id">
+  <div
+    class="product-collection"
+    v-for="collectionItem in collectionList"
+    :key="collectionItem.id"
+  >
     <router-link
       class="product-link"
-      :to="{ name: 'Product', params: { id: product.id } }"
+      :to="{ name: 'Commercial', params: { id: collectionItem.id } }"
     >
       <div class="image">
-        <img :src="product.imageUrl" />
+        <img :src="collectionItem.imageUrl" />
       </div>
-      <image-caption class="image-caption">{{ product.name }}</image-caption>
+      <image-caption class="image-caption">{{
+        collectionItem.name
+      }}</image-caption>
     </router-link>
   </div>
 </template>
@@ -16,12 +22,7 @@
 import ImageCaption from '../UI/ImageCaption.vue'
 export default {
   components: { ImageCaption },
-  props: {
-    products: {
-      type: Array,
-      required: true
-    }
-  },
+  props: ['collectionList'],
   setup() {
     return {}
   }
