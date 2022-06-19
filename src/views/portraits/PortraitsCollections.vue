@@ -8,7 +8,7 @@
     <div>
       <ProductCreateCollectionComponent
         v-if="addNew"
-        :createCollectionName="'weddings'"
+        :createCollectionName="'portraits'"
         :pathName="'Weddings'"
       />
     </div>

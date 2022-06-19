@@ -33,8 +33,7 @@ export default {
     Swiper,
     SwiperSlide
   },
-  setup(props) {
-    console.log(props.slider)
+  setup() {
     return {
       modules: [Navigation]
     }

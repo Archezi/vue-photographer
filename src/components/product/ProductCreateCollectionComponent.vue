@@ -28,7 +28,6 @@ import useStorage from '@/composables/useStorage'
 import useCollection from '@/composables/useCollection'
 import getUser from '@/composables/getUser'
 import { timestamp } from '@/firebase/config'
-import { useRouter } from 'vue-router'
 export default {
   props: ['createCollectionName', 'pathName'],
   setup(props) {
@@ -40,7 +39,6 @@ export default {
     const collectionName = ref('')
     const file = ref(null)
     const fileError = ref(null)
-    const router = useRouter()
 
     const ucfirst = (str) => str.charAt(0).toUpperCase() + str.slice(1)
     const collectionNameDisplay = ref(ucfirst(props.createCollectionName))
@@ -61,10 +59,6 @@ export default {
         if (!error.value) {
           console.log('playlist added')
           console.log(res)
-          router.push({
-            name: `${props.pathName}`,
-            params: { id: res.id }
-          })
         }
       }
     }
