@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path: '/families',
-    name: 'Families',
+    name: 'families',
     component: () => import('../views/family/FamiliesCollections.vue')
   },
   {
@@ -71,7 +71,7 @@ const routes = [
     component: () => import('../views/about/About.vue')
   },
   {
-    path: '/commercial',
+    path: '/commercials',
     name: 'Commercials',
     component: () => import('../views/commercial/CommercialsCollections.vue')
   },

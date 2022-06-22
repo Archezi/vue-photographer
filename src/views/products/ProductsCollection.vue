@@ -12,7 +12,10 @@
       />
     </div>
     <div class="product-collection_content container">
-      <ProductListComponent :collectionList="collectionList" />
+      <ProductListComponent
+        :collectionList="collectionList"
+        :pathName="'Product'"
+      />
     </div>
   </div>
 </template>
@@ -21,7 +24,7 @@ import { ref } from 'vue'
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 import ProductCreateCollectionComponent from '../../components/product/ProductCreateCollectionComponent.vue'
-import ProductListComponent from '../../components/collections/products/ProductListComponent.vue'
+import ProductListComponent from '../../components/product/ProductsListComponent.vue'
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {

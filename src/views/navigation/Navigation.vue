@@ -84,8 +84,8 @@ export default {
         image: 'products.jpg'
       },
       {
-        name: 'Commercial',
-        path: '/commercial',
+        name: 'Commercials',
+        path: '/commercials',
         image: 'commercial.jpg'
       },
       {

@@ -6,7 +6,8 @@
   >
     <router-link
       class="product-link"
-      :to="{ name: 'Commercial', params: { id: collectionItem.id } }"
+      @click="test"
+      :to="createPath(collectionItem.id)"
     >
       <div class="image">
         <img :src="collectionItem.imageUrl" />
@@ -20,11 +21,17 @@
 
 <script>
 import ImageCaption from '../UI/ImageCaption.vue'
+import { ref } from 'vue'
 export default {
   components: { ImageCaption },
-  props: ['collectionList'],
-  setup() {
-    return {}
+  props: ['collectionList', 'pathName'],
+  setup(props) {
+    const pathN = ref(props.pathName)
+    const createPath = (source) => {
+      return { name: pathN.value, params: { id: source } }
+    }
+
+    return { createPath }
   }
 }
 </script>

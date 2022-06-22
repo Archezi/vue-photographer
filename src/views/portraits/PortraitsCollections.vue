@@ -9,7 +9,7 @@
       <ProductCreateCollectionComponent
         v-if="addNew"
         :createCollectionName="'portraits'"
-        :pathName="'Weddings'"
+        :pathName="'Portrait'"
       />
     </div>
     <div class="product-collection_content container">

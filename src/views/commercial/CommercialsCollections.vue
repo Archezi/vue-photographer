@@ -12,7 +12,10 @@
       />
     </div>
     <div class="product-collection_content container">
-      <ProductsListComponent :collectionList="collectionList" />
+      <ProductsListComponent
+        :collectionList="collectionList"
+        :pathName="'Commercial'"
+      />
     </div>
   </div>
 </template>
