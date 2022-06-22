@@ -39,15 +39,20 @@ export default {
 <style lang="scss" scoped>
 .login-wrapper {
   position: relative;
-  height: calc(100vh - 160px);
+  height: var(--swiper-height);
   max-width: 100%;
   width: 100%;
 }
-.login-form {
+form.login-form {
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
+  height: 300px;
+  button {
+    margin-top: auto;
+  }
 }
 </style>

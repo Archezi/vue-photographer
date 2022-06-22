@@ -12,10 +12,14 @@
       />
     </div>
     <div class="product-collection_content container">
+<<<<<<< HEAD
       <ProductListComponent
         :collectionList="collectionList"
         :pathName="'Product'"
       />
+=======
+      <ProductsListComponent :collectionList="collectionList" />
+>>>>>>> 9a77eb82bbaaa907d089b8008a665f8ff6f63040
     </div>
   </div>
 </template>
@@ -24,11 +28,15 @@ import { ref } from 'vue'
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 import ProductCreateCollectionComponent from '../../components/product/ProductCreateCollectionComponent.vue'
+<<<<<<< HEAD
 import ProductListComponent from '../../components/product/ProductsListComponent.vue'
+=======
+import ProductsListComponent from '../../components/product/ProductsListComponent.vue'
+>>>>>>> 9a77eb82bbaaa907d089b8008a665f8ff6f63040
 import UtilityBar from '../../components/UI/UtilityBar.vue'
 export default {
   components: {
-    ProductListComponent,
+    ProductsListComponent,
     UtilityBar,
     ProductCreateCollectionComponent
   },
