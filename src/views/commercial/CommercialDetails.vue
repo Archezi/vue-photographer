@@ -19,7 +19,7 @@
       <button @click="addNew = !addNew">Add new image</button>
     </div>
     <div v-if="product.photos.length" class="slider-content">
-      <SwiperComponent
+      <SwiperDetailsComponent
         v-if="store.state.sliderView"
         :slider="product.photos"
         :numberOfSlides="1"
@@ -51,11 +51,11 @@ import UtilityBar from '../../components/UI/UtilityBar.vue'
 import ProductAddImageComponent from '../../components/product/ProductAddImageComponent.vue'
 
 // Swiper
-import SwiperComponent from '../../components/swiper/SwiperComponent.vue'
+import SwiperDetailsComponent from '../../components/swiper/SwiperDetailsComponent.vue'
 export default {
   components: {
     ProductAddImageComponent,
-    SwiperComponent,
+    SwiperDetailsComponent,
     UtilityBar,
     GridView
   },
